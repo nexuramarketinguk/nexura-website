@@ -172,41 +172,41 @@ nav.scrolled {
   box-shadow: 0 8px 24px rgba(0,0,0,0.3);
 }
 
-/* ── Apply Now — THE primary CTA. Bold, unmissable, premium teal ── */
+/* ── Apply Now — THE hero CTA. Unmissable, premium solid teal ── */
 .btn-apply {
   display: inline-flex; align-items: center; justify-content: center; gap: 0.625rem;
-  padding: 1.0625rem 2.875rem;
+  padding: 1.125rem 3.25rem;
   background: #82DCD2;
   color: #001e1c;
   font-family: 'Manrope', sans-serif;
-  font-weight: 800; font-size: 1.0625rem;
+  font-weight: 800; font-size: 1.125rem;
   border-radius: 50px;
   text-decoration: none; border: none; cursor: pointer;
   transition: transform 0.25s var(--ease-spring), box-shadow 0.25s, background 0.2s;
-  box-shadow: 0 4px 24px rgba(130,220,210,0.35), 0 0 0 1px rgba(255,255,255,0.18) inset;
+  box-shadow: 0 6px 28px rgba(130,220,210,0.4), 0 0 0 1px rgba(255,255,255,0.2) inset;
   white-space: nowrap; letter-spacing: 0.01em;
   position: relative; overflow: hidden;
 }
 .btn-apply::after {
   content: ''; position: absolute; inset: 0; border-radius: 50px;
-  background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 60%);
+  background: linear-gradient(135deg, rgba(255,255,255,0.22) 0%, transparent 55%);
   opacity: 0; transition: opacity 0.2s;
 }
 .btn-apply:hover {
   background: #9ef9ee;
   transform: translateY(-3px);
-  box-shadow: 0 20px 55px rgba(130,220,210,0.55), 0 0 0 1px rgba(255,255,255,0.18) inset;
+  box-shadow: 0 22px 60px rgba(130,220,210,0.6), 0 0 0 1px rgba(255,255,255,0.2) inset;
 }
 .btn-apply:hover::after { opacity: 1; }
 .btn-apply:active { transform: translateY(-1px); }
 
-/* ── Chat on WhatsApp — secondary/ghost, sits alongside Apply Now ── */
+/* ── Chat on WhatsApp — clearly secondary, ghost style, smaller ── */
 .btn-whatsapp {
-  display: inline-flex; align-items: center; justify-content: center; gap: 0.625rem;
-  padding: 1.0625rem 2rem;
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  padding: 0.875rem 1.875rem;
   background: transparent;
   color: var(--text-muted);
-  font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 1rem;
+  font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 0.9375rem;
   border-radius: 50px; text-decoration: none;
   border: 1px solid rgba(37,211,102,0.35); cursor: pointer;
   transition: all 0.25s var(--ease-out);
@@ -214,11 +214,11 @@ nav.scrolled {
 }
 .btn-whatsapp svg { color: #25D366; flex-shrink: 0; }
 .btn-whatsapp:hover {
-  border-color: rgba(37,211,102,0.7);
+  border-color: rgba(37,211,102,0.65);
   color: var(--text);
   background: rgba(37,211,102,0.06);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(37,211,102,0.12);
+  box-shadow: 0 6px 20px rgba(37,211,102,0.1);
 }
 
 /* ── Section shared ── */
@@ -350,8 +350,8 @@ section { position: relative; z-index: 1; }
   max-width: 540px; margin: 0 auto 3rem;
 }
 .apply-actions {
-  display: flex; align-items: center; justify-content: center;
-  gap: 1.25rem; flex-wrap: wrap; margin-bottom: 2.25rem;
+  display: flex; flex-direction: row; align-items: center; justify-content: center;
+  gap: 1rem; flex-wrap: nowrap; margin-bottom: 2.25rem;
 }
 .apply-note {
   font-size: 0.8125rem; color: var(--text-muted);
@@ -406,4 +406,14 @@ footer {
 @keyframes shimmer {
   0%   { background-position: -200% center; }
   100% { background-position: 200% center; }
+}
+
+/* ── CTA button pair: row on desktop, stacked on mobile ── */
+@media (max-width: 600px) {
+  .apply-actions {
+    flex-direction: column; align-items: stretch;
+    max-width: 360px; margin-left: auto; margin-right: auto;
+  }
+  .apply-actions .btn-apply,
+  .apply-actions .btn-whatsapp { width: 100%; text-align: center; }
 }
