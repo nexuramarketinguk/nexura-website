@@ -78,21 +78,16 @@ nav.scrolled {
   border-bottom-color: rgba(125,216,205,0.12);
 }
 .nav-logo {
-  display: flex; align-items: center; gap: 0.625rem; text-decoration: none;
+  display: flex; align-items: center; text-decoration: none;
 }
-.nav-logo-mark {
-  width: 34px; height: 34px;
-  background: linear-gradient(135deg, var(--teal), var(--teal-light));
-  border-radius: 9px;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 0.9rem;
-  color: #002e2a; flex-shrink: 0;
-  box-shadow: 0 0 20px rgba(125,216,205,0.2);
+.nav-logo img {
+  height: 36px; width: auto; display: block;
+  transition: opacity 0.2s;
 }
-.nav-logo-text {
-  font-family: 'Manrope', sans-serif; font-weight: 700;
-  font-size: 1.05rem; color: var(--text); letter-spacing: -0.025em;
-}
+.nav-logo:hover img { opacity: 0.85; }
+/* Keep these for any pages that still use the old markup */
+.nav-logo-mark { display: none; }
+.nav-logo-text { display: none; }
 .nav-links { display: flex; align-items: center; gap: 2.25rem; list-style: none; }
 .nav-links a {
   color: var(--text-muted); text-decoration: none;
