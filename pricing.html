@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pricing — Nexura Marketing</title>
+  <meta name="description" content="Simple, transparent pricing for Nexura Marketing. Starter from £149/mo. No contracts, no setup fees." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── Pricing ── */
+    #pricing { padding: 6rem 2.5rem 9rem; position: relative; overflow: hidden; }
+    #pricing::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+      background-image: radial-gradient(rgba(125,216,205,0.06) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+    }
+
+    .pricing-grid {
+      display: grid; grid-template-columns: 1fr 1.12fr 1fr;
+      gap: 1.5rem; max-width: 1120px; margin: 4rem auto 0;
+      align-items: center; position: relative; z-index: 1;
+    }
+
+    /* Non-featured cards: slightly muted/recessed */
+    .pricing-card {
+      background: rgba(12,28,47,0.6);
+      border: 1px solid rgba(125,216,205,0.09);
+      border-radius: var(--radius-lg); padding: 2.75rem;
+      position: relative; transition: all 0.35s var(--ease-out);
+      opacity: 0.78;
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    }
+    .pricing-card:hover:not(.featured) {
+      opacity: 0.95;
+      border-color: rgba(125,216,205,0.2);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    }
+
+    /* FEATURED / GROWTH card: truly elevated */
+    .pricing-card.featured {
+      background: linear-gradient(160deg, rgba(22,42,64,0.98) 0%, rgba(14,30,50,0.98) 100%);
+      border: 2px solid var(--teal);
+      border-radius: calc(var(--radius-lg) + 4px);
+      padding: 3.25rem 2.75rem;
+      transform: translateY(-20px) scale(1.04);
+      box-shadow:
+        0 0 0 1px rgba(125,216,205,0.12) inset,
+        0 40px 90px rgba(0,0,0,0.55),
+        0 0 0 8px rgba(125,216,205,0.04),
+        0 0 80px rgba(125,216,205,0.1);
+      opacity: 1;
+      z-index: 2;
+    }
+    /* Teal glow halo behind featured card */
+    .pricing-card.featured::before {
+      content: ''; position: absolute; inset: -2px; border-radius: calc(var(--radius-lg) + 6px);
+      background: linear-gradient(135deg, rgba(125,216,205,0.15), transparent 60%);
+      pointer-events: none; z-index: -1;
+    }
+    .pricing-card.featured:hover { transform: translateY(-26px) scale(1.04); }
+    .pricing-card.featured .pricing-amount {
+      background: linear-gradient(135deg, var(--teal), var(--teal-light));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .pricing-card.featured .pricing-tier { color: var(--teal); letter-spacing: 0.14em; }
+    .pricing-card.featured .pricing-features li { color: var(--text); opacity: 0.9; }
+
+    .pricing-badge {
+      position: absolute; top: -16px; left: 50%; transform: translateX(-50%);
+      padding: 0.35rem 1.125rem;
+      background: linear-gradient(135deg, var(--teal), var(--teal-light));
+      border-radius: 50px; font-size: 0.7rem; font-weight: 800;
+      color: #002e2a; text-transform: uppercase; letter-spacing: 0.1em;
+      white-space: nowrap; box-shadow: 0 4px 16px rgba(125,216,205,0.4);
+    }
+    .pricing-tier {
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.12em; color: var(--text-muted); margin-bottom: 0.625rem;
+    }
+    .pricing-price { display: flex; align-items: flex-end; gap: 0.25rem; margin-bottom: 0.375rem; }
+    .pricing-amount {
+      font-family: 'Manrope', sans-serif; font-size: 3.25rem; font-weight: 800;
+      color: var(--text); letter-spacing: -0.04em; line-height: 1;
+    }
+    .pricing-period { font-size: 0.875rem; color: var(--text-muted); padding-bottom: 0.4rem; }
+    .pricing-desc { font-size: 0.875rem; color: var(--text-muted); margin-bottom: 2rem; line-height: 1.65; }
+    .pricing-divider { height: 1px; background: var(--outline); margin-bottom: 1.75rem; }
+    .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 0.875rem; margin-bottom: 2.25rem; }
+    .pricing-features li {
+      display: flex; align-items: flex-start; gap: 0.625rem;
+      font-size: 0.875rem; color: var(--text-muted); line-height: 1.5;
+    }
+    .pricing-check { color: var(--teal); flex-shrink: 0; margin-top: 2px; }
+
+    .pricing-cta {
+      display: block; width: 100%; padding: 0.9375rem;
+      text-align: center; border-radius: 50px;
+      font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 0.9375rem;
+      text-decoration: none; transition: all 0.25s var(--ease-out);
+      letter-spacing: 0.01em;
+    }
+    .pricing-cta-primary {
+      background: linear-gradient(135deg, var(--teal), var(--teal-light));
+      color: #002e2a;
+      box-shadow: 0 4px 20px rgba(125,216,205,0.25);
+    }
+    .pricing-cta-primary:hover {
+      box-shadow: 0 12px 35px rgba(125,216,205,0.45);
+      transform: translateY(-2px);
+    }
+    .pricing-cta-ghost {
+      background: rgba(22,36,54,0.6); color: var(--text-muted);
+      border: 1px solid rgba(125,216,205,0.1);
+    }
+    .pricing-cta-ghost:hover {
+      background: rgba(39,54,73,0.8); color: var(--text);
+      border-color: rgba(125,216,205,0.25);
+      transform: translateY(-1px);
+    }
+
+    /* Comparison note */
+    .pricing-compare {
+      max-width: 820px; margin: 5rem auto 0; text-align: center;
+      padding: 3rem;
+      background: rgba(12,28,47,0.5);
+      border: 1px solid var(--outline);
+      border-radius: var(--radius-lg);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      position: relative; z-index: 1;
+    }
+    .pricing-compare h3 { font-size: 1.375rem; font-weight: 700; margin-bottom: 0.875rem; }
+    .pricing-compare p { font-size: 0.9375rem; color: var(--text-muted); line-height: 1.75; }
+    .compare-row { display: flex; justify-content: center; gap: 4rem; margin-top: 2.5rem; flex-wrap: wrap; }
+    .compare-item { text-align: center; }
+    .compare-item-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.375rem; }
+    .compare-item-value { font-family: 'Manrope', sans-serif; font-size: 1.625rem; font-weight: 800; color: var(--text); }
+    .compare-item-value.teal { color: var(--teal); }
+    .compare-item-value.muted { color: var(--text-muted); text-decoration: line-through; opacity: 0.6; }
+
+    @media (max-width: 960px) {
+      .pricing-grid { grid-template-columns: 1fr; max-width: 480px; }
+      .pricing-card.featured { transform: none; }
+      .pricing-card.featured:hover { transform: translateY(-6px); }
+    }
+  </style>
+</head>
+<body>
+<div class="ambient"></div>
+
+<!-- ── NAV ── -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">N</div>
+    <span class="nav-logo-text">Nexura</span>
+  </a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#how-it-works">How It Works</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="pricing.html" class="active">Pricing</a></li>
+    <li><a href="https://wa.me/447591771279?text=Hey%20Nexura%2C%20I%27m%20interested%20in%20finding%20out%20more" class="nav-cta" target="_blank" rel="noopener">Get Started</a></li>
+  </ul>
+  <div class="nav-hamburger" id="hamburger" aria-label="Open menu" role="button" tabindex="0">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ── PAGE HERO ── -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="section-label" style="justify-content:center;">Pricing</div>
+    <h1>Simple pricing.<br/><span>No surprises.</span></h1>
+    <p>Less than the cost of one part-time employee. More than an entire marketing department. No setup fees, no long-term contracts.</p>
+  </div>
+</div>
+
+<!-- ── PRICING ── -->
+<section id="pricing">
+  <div class="section-inner">
+    <div class="pricing-grid">
+
+      <!-- Starter -->
+      <div class="pricing-card reveal fade-delay-1">
+        <div class="pricing-tier">Starter</div>
+        <div class="pricing-price"><span class="pricing-amount">£149</span><span class="pricing-period">/mo</span></div>
+        <div class="pricing-desc">Perfect for getting started. Social media handled so you can focus on service.</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li><svg class="pricing-check" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Instagram &amp; Facebook management</li>
+          <li><svg class="pricing-check" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>8 posts per month</li>
+          <li><svg class="pricing-check" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>AI-written captions &amp; hashtags</li>
+          <li><svg class="pricing-check" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Strategic scheduling</li>
+          <li><svg class="pricing-check" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Basic monthly summary</li>
+          <li><svg class="pricing-check" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>WhatsApp management interface</li>
+        </ul>
+        <a href="https://wa.me/447591771279?text=Hey%20Nexura%2C%20I%27m%20interested%20in%20finding%20out%20more" class="pricing-cta pricing-cta-ghost" target="_blank" rel="noopener">Get Started</a>
+      </div>
+
+      <!-- Growth (Featured) -->
+      <div class="pricing-card featured reveal fade-delay-3">
+        <div class="pricing-badge">Most Popular</div>
+        <div class="pricing-tier">Growth</div>
+        <div class="pricing-price"><span class="pricing-amount">£299</span><span class="pricing-period">/mo</span></div>
+        <div class="pricing-desc">The full foundation. Social, Google, reviews, and monthly analytics in one plan.</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li><svg class="pricing-check" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Instagram, Facebook &amp; TikTok</li>
+          <li><svg class="pricing-check" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>20 posts per month</li>
+          <li><svg class="pricing-check" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Google Business Profile management</li>
+          <li><svg class="pricing-check" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Review monitoring &amp; AI responses</li>
+          <li><svg class="pricing-check" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Full monthly performance report</li>
+          <li><svg class="pricing-check" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Content calendar planning</li>
+        </ul>
+        <a href="https://wa.me/447591771279?text=Hey%20Nexura%2C%20I%27m%20interested%20in%20finding%20out%20more" class="pricing-cta pricing-cta-primary" target="_blank" rel="noopener">Get Started</a>
+      </div>
+
+      <!-- Pro -->
+      <div class="pricing-card reveal fade-delay-5">
+        <div class="pricing-tier">Pro</div>
+        <div class="pricing-price"><span class="pricing-amount">£549</span><span class="pricing-period">/mo</span></div>
+        <div class="pricing-desc">The complete package. Every service, every channel, maximum growth.</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li><svg class="pricing-check" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Everything in Growth</li>
+          <li><svg class="pricing-check" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Email marketing campaigns</li>
+          <li><svg class="pricing-check" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Full local SEO optimisation</li>
+          <li><svg class="pricing-check" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Competitor monitoring</li>
+          <li><svg class="pricing-check" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Weekly performance reports</li>
+          <li><svg class="pricing-check" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Ad copy &amp; strategy</li>
+          <li><svg class="pricing-check" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Priority WhatsApp support</li>
+        </ul>
+        <a href="https://wa.me/447591771279?text=Hey%20Nexura%2C%20I%27m%20interested%20in%20finding%20out%20more" class="pricing-cta pricing-cta-ghost" target="_blank" rel="noopener">Get Started</a>
+      </div>
+    </div>
+
+    <!-- Comparison callout -->
+    <div class="pricing-compare reveal">
+      <h3>What does this actually cost compared to in-house?</h3>
+      <p>A single part-time social media manager in London costs £18,000–£25,000 per year — and they only cover one channel. Nexura covers all eight services, starts within 24 hours, and has no sick days.</p>
+      <div class="compare-row">
+        <div class="compare-item">
+          <div class="compare-item-label">Part-time hire</div>
+          <div class="compare-item-value muted">~£2,000/mo</div>
+        </div>
+        <div class="compare-item">
+          <div class="compare-item-label">Traditional agency</div>
+          <div class="compare-item-value muted">~£1,500/mo</div>
+        </div>
+        <div class="compare-item">
+          <div class="compare-item-label">Nexura Growth</div>
+          <div class="compare-item-value teal">£299/mo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── APPLY CTA ── -->
+<section id="apply">
+  <div class="apply-inner">
+    <div class="apply-eyebrow reveal">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      London's leading hospitality marketing
+    </div>
+    <h2 class="apply-title reveal">Not sure which<br/><span>plan is right?</span></h2>
+    <p class="apply-desc reveal">Text us on WhatsApp and tell us about your venue. We'll recommend the right tier and get you live within 24 hours. No contracts, no setup fees.</p>
+    <div class="apply-actions reveal">
+      <a href="https://wa.me/447591771279?text=Hey%20Nexura%2C%20I%27m%20interested%20in%20finding%20out%20more" class="btn-whatsapp" target="_blank" rel="noopener">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Get Started
+      </a>
+      <a href="services.html" class="btn-secondary">See All Services</a>
+    </div>
+    <div class="apply-note reveal">
+      <span class="apply-note-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> No contracts</span>
+      <span class="apply-note-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> No setup fees</span>
+      <span class="apply-note-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Live within 24 hours</span>
+      <span class="apply-note-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Cancel anytime</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="margin-bottom:0.75rem;display:inline-flex;">
+          <div class="nav-logo-mark">N</div>
+          <span class="nav-logo-text">Nexura Marketing</span>
+        </a>
+        <p>AI-powered marketing for London's hospitality businesses. Your entire marketing team, delivered through WhatsApp.</p>
+      </div>
+      <div class="footer-col"><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="index.html#how-it-works">How It Works</a></li></ul></div>
+      <div class="footer-col"><h4>Legal</h4><ul><li><a href="privacy.html">Privacy Policy</a></li><li><a href="privacy.html#cookies">Cookie Policy</a></li><li><a href="privacy.html#rights">Your Rights</a></li></ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul><li><a href="mailto:nexura@nexuramarketing.co.uk">nexura@nexuramarketing.co.uk</a></li><li><a href="https://wa.me/447591771279" target="_blank" rel="noopener">+44 7591 771279</a></li><li><a href="https://wa.me/447591771279?text=Hey%20Nexura%2C%20I%27m%20interested%20in%20finding%20out%20more" target="_blank" rel="noopener">WhatsApp Us</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Nexura Marketing. London, UK. All rights reserved.</p>
+      <p>Designed with Google Stitch · Built for London hospitality</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 40));
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+  hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  hamburger.addEventListener('keydown', e => { if (e.key==='Enter'||e.key===' ') navLinks.classList.toggle('open'); });
+  const ro = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), {threshold:0.1, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+</script>
+</body>
+</html>

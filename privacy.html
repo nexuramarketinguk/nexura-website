@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Nexura Marketing</title>
+  <meta name="description" content="Privacy Policy for Nexura Marketing. How we collect, use and protect your data. GDPR compliant, UK-focused." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    :root {
+      --bg:            #041426;
+      --surface-low:   #0c1c2f;
+      --surface:       #112033;
+      --surface-high:  #1c2b3e;
+      --teal:          #82DCD2;
+      --gold:          #E8B931;
+      --text:          #d4e3fd;
+      --text-muted:    #bdc9c6;
+      --outline:       rgba(62,73,71,0.4);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(4,20,38,0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--outline);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 0.5rem;
+      text-decoration: none;
+    }
+    .nav-logo-mark {
+      width: 34px; height: 34px;
+      background: linear-gradient(135deg, #82DCD2, #9ef9ee);
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800; font-size: 0.95rem;
+      color: #003733;
+    }
+    .nav-logo-text {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700; font-size: 1.05rem;
+      color: var(--text); letter-spacing: -0.02em;
+    }
+    .nav-back {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      color: var(--text-muted); text-decoration: none;
+      font-size: 0.875rem; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--teal); }
+
+    /* HERO */
+    .privacy-hero {
+      padding: 5rem 2rem 3rem;
+      background: var(--surface-low);
+      border-bottom: 1px solid var(--outline);
+    }
+    .privacy-hero-inner {
+      max-width: 780px; margin: 0 auto;
+    }
+    .privacy-label {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.75rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--teal); margin-bottom: 1rem;
+    }
+    .privacy-label::before {
+      content: ''; display: block;
+      width: 20px; height: 1px; background: var(--teal);
+    }
+    .privacy-hero h1 {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 800; line-height: 1.15;
+      letter-spacing: -0.02em; color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .privacy-hero p {
+      color: var(--text-muted); font-size: 1rem;
+    }
+    .privacy-date {
+      margin-top: 1rem;
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      background: rgba(130,220,210,0.08);
+      border: 1px solid rgba(130,220,210,0.2);
+      border-radius: 50px;
+      font-size: 0.8rem; color: var(--teal); font-weight: 600;
+    }
+
+    /* TABLE OF CONTENTS */
+    .toc-wrapper {
+      max-width: 780px; margin: 2.5rem auto 0;
+      background: rgba(28,43,62,0.5);
+      border: 1px solid var(--outline);
+      border-radius: 1.25rem;
+      padding: 1.5rem 2rem;
+    }
+    .toc-wrapper h3 {
+      font-size: 0.8rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--text-muted); margin-bottom: 1rem;
+    }
+    .toc-list {
+      list-style: none;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0.4rem 2rem;
+    }
+    .toc-list a {
+      font-size: 0.875rem; color: var(--text-muted);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .toc-list a:hover { color: var(--teal); }
+    @media (max-width: 560px) {
+      .toc-list { grid-template-columns: 1fr; }
+    }
+
+    /* CONTENT */
+    .privacy-content {
+      max-width: 780px; margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+    }
+    .section-block {
+      margin-bottom: 3rem;
+      scroll-margin-top: 80px;
+    }
+    .section-block h2 {
+      font-size: 1.375rem; font-weight: 700;
+      color: var(--text); margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--outline);
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .section-block h2 span.num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 28px; height: 28px;
+      background: rgba(130,220,210,0.1);
+      color: var(--teal); border-radius: 8px;
+      font-size: 0.8rem; font-weight: 800;
+      flex-shrink: 0;
+    }
+    .section-block h3 {
+      font-size: 1rem; font-weight: 600;
+      color: var(--text); margin: 1.5rem 0 0.5rem;
+    }
+    .section-block p {
+      font-size: 0.9375rem; color: var(--text-muted);
+      margin-bottom: 1rem; line-height: 1.75;
+    }
+    .section-block ul, .section-block ol {
+      margin: 0.75rem 0 1rem 1.25rem;
+      display: flex; flex-direction: column; gap: 0.4rem;
+    }
+    .section-block li {
+      font-size: 0.9375rem; color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .section-block a {
+      color: var(--teal); text-decoration: none;
+    }
+    .section-block a:hover { text-decoration: underline; }
+    .info-box {
+      background: rgba(130,220,210,0.06);
+      border: 1px solid rgba(130,220,210,0.15);
+      border-radius: 0.875rem;
+      padding: 1.25rem 1.5rem;
+      margin: 1rem 0;
+    }
+    .info-box p { margin-bottom: 0; }
+    .warn-box {
+      background: rgba(232,185,49,0.06);
+      border: 1px solid rgba(232,185,49,0.2);
+      border-radius: 0.875rem;
+      padding: 1.25rem 1.5rem;
+      margin: 1rem 0;
+    }
+    .warn-box p { margin-bottom: 0; color: var(--text-muted); }
+
+    /* FOOTER */
+    footer {
+      background: var(--surface-low);
+      border-top: 1px solid var(--outline);
+      padding: 2rem;
+      text-align: center;
+    }
+    footer p { font-size: 0.8rem; color: var(--text-muted); }
+    footer a { color: var(--teal); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">N</div>
+    <span class="nav-logo-text">Nexura</span>
+  </a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#how-it-works">How It Works</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="https://wa.me/447591771279?text=Hey%20Nexura%2C%20I%27m%20interested%20in%20finding%20out%20more" class="nav-cta" target="_blank" rel="noopener">Get Started</a></li>
+  </ul>
+  <div class="nav-hamburger" id="hamburger" aria-label="Open menu" role="button" tabindex="0">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<!-- legacy back link kept for fallback -->
+<a href="index.html" class="nav-back" style="display:none;">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Back to Home
+  </a>
+</nav>
+
+<!-- HERO -->
+<div class="privacy-hero">
+  <div class="privacy-hero-inner">
+    <div class="privacy-label">Legal</div>
+    <h1>Privacy Policy</h1>
+    <p>This Privacy Policy explains how Nexura Marketing collects, uses, stores and protects your personal data. We are committed to full compliance with UK GDPR and the Data Protection Act 2018.</p>
+    <span class="privacy-date">Last updated: 3 April 2026</span>
+  </div>
+
+  <!-- TOC -->
+  <div class="toc-wrapper">
+    <h3>Contents</h3>
+    <ol class="toc-list">
+      <li><a href="#who-we-are">1. Who We Are</a></li>
+      <li><a href="#what-we-collect">2. Data We Collect</a></li>
+      <li><a href="#how-we-use">3. How We Use Your Data</a></li>
+      <li><a href="#legal-basis">4. Legal Basis</a></li>
+      <li><a href="#third-parties">5. Third Parties We Share With</a></li>
+      <li><a href="#retention">6. Data Retention</a></li>
+      <li><a href="#rights">7. Your Rights</a></li>
+      <li><a href="#security">8. Security</a></li>
+      <li><a href="#cookies">9. Cookies</a></li>
+      <li><a href="#changes">10. Changes to This Policy</a></li>
+      <li><a href="#contact">11. Contact Us</a></li>
+    </ol>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="privacy-content">
+
+  <!-- 1 -->
+  <div class="section-block" id="who-we-are">
+    <h2><span class="num">1</span> Who We Are</h2>
+    <p>Nexura Marketing ("we", "us", "our") is an AI-powered marketing agency based in London, UK. We provide digital marketing services to hospitality businesses including pubs, restaurants, cafés and bars.</p>
+    <div class="info-box">
+      <p><strong>Data Controller:</strong> Nexura Marketing, London, UK<br/>
+      <strong>Contact:</strong> <a href="mailto:nexura@nexuramarketing.co.uk">nexura@nexuramarketing.co.uk</a><br/>
+      <strong>WhatsApp:</strong> +44 7591 771279</p>
+    </div>
+    <p>We are registered as a data controller and are committed to protecting your personal data in accordance with UK GDPR and the Data Protection Act 2018.</p>
+  </div>
+
+  <!-- 2 -->
+  <div class="section-block" id="what-we-collect">
+    <h2><span class="num">2</span> Data We Collect</h2>
+
+    <h3>Information you provide to us</h3>
+    <ul>
+      <li><strong>Contact details:</strong> Your name, phone number (including WhatsApp number), and email address</li>
+      <li><strong>Business information:</strong> Your business name, address, type of establishment, website URL, and social media handles</li>
+      <li><strong>Account credentials:</strong> Login details or access tokens for social media platforms (Instagram, Facebook, TikTok) and Google Business Profile, where you choose to provide them for us to manage your accounts</li>
+      <li><strong>Content:</strong> Photos, videos, and written content you share with us via WhatsApp or other channels for use in your marketing</li>
+      <li><strong>Communications:</strong> The content of messages you send us via WhatsApp, email, or any other channel</li>
+    </ul>
+
+    <h3>Information we collect automatically</h3>
+    <ul>
+      <li><strong>Analytics data:</strong> Performance data from platforms we manage on your behalf, including reach, impressions, engagement rates, and follower counts</li>
+      <li><strong>Review data:</strong> Content of reviews posted about your business on Google and other public platforms</li>
+      <li><strong>Competitor data:</strong> Publicly available information about competitor businesses for the purpose of market analysis</li>
+      <li><strong>Website data:</strong> If you visit our website, we may collect standard log data including your IP address, browser type, and pages visited (see Cookies section below)</li>
+    </ul>
+
+    <h3>Special categories of data</h3>
+    <p>We do not intentionally collect any special category personal data (such as health information, political views, or biometric data). Please do not send us any such data.</p>
+  </div>
+
+  <!-- 3 -->
+  <div class="section-block" id="how-we-use">
+    <h2><span class="num">3</span> How We Use Your Data</h2>
+    <p>We use your personal data for the following purposes:</p>
+    <ul>
+      <li><strong>Service delivery:</strong> To manage and operate your social media accounts, Google Business Profile, email marketing campaigns, and other marketing services you have subscribed to</li>
+      <li><strong>Content creation:</strong> To create marketing content tailored to your business using AI tools, based on information and assets you provide</li>
+      <li><strong>Review management:</strong> To monitor online reviews of your business and draft professional responses on your behalf</li>
+      <li><strong>SEO and local search:</strong> To optimise your online presence and improve your visibility in local search results</li>
+      <li><strong>Performance reporting:</strong> To compile and send you monthly reports on the performance of your marketing activities</li>
+      <li><strong>Competitor monitoring:</strong> To track competitor businesses and surface relevant opportunities for your business</li>
+      <li><strong>Communication:</strong> To communicate with you about your account, services, and any queries you raise via WhatsApp or email</li>
+      <li><strong>Billing and administration:</strong> To manage your subscription, process payments, and maintain our business records</li>
+      <li><strong>Legal compliance:</strong> To fulfil our legal obligations and enforce our terms</li>
+    </ul>
+    <div class="warn-box">
+      <p>We will never sell your personal data to third parties. We will never use your data for purposes other than those described in this policy without your explicit consent.</p>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="section-block" id="legal-basis">
+    <h2><span class="num">4</span> Legal Basis for Processing</h2>
+    <p>Under UK GDPR, we must have a lawful basis for processing your personal data. We rely on the following:</p>
+    <ul>
+      <li><strong>Contract performance (Article 6(1)(b)):</strong> Processing necessary to deliver the services you have contracted with us, including managing your marketing channels and creating content</li>
+      <li><strong>Legitimate interests (Article 6(1)(f)):</strong> Processing for our legitimate business interests, such as improving our services, preventing fraud, and conducting market analysis — where these do not override your rights</li>
+      <li><strong>Consent (Article 6(1)(a)):</strong> Where we ask for your consent to specific processing activities, such as sending you marketing communications about our own services</li>
+      <li><strong>Legal obligation (Article 6(1)(c)):</strong> Where we are required to process data to comply with UK law</li>
+    </ul>
+  </div>
+
+  <!-- 5 -->
+  <div class="section-block" id="third-parties">
+    <h2><span class="num">5</span> Third Parties We Share Data With</h2>
+    <p>We share your data with third parties only where necessary to deliver our services. We require all third parties to respect the security of your personal data and to comply with applicable data protection law.</p>
+
+    <h3>Platform providers (necessary for service delivery)</h3>
+    <ul>
+      <li><strong>Meta (Facebook &amp; Instagram):</strong> We access your Facebook Page and Instagram Business Account via the Meta API to post content, respond to messages, and retrieve analytics. Meta's privacy policy governs their use of data: <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">facebook.com/privacy/policy</a></li>
+      <li><strong>Google:</strong> We access your Google Business Profile to manage posts, photos, and information. Google's privacy policy: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></li>
+      <li><strong>TikTok:</strong> Where TikTok management is included in your plan, we access your TikTok Business Account to post and manage content. TikTok's privacy policy: <a href="https://www.tiktok.com/legal/page/eea/privacy-policy/en" target="_blank" rel="noopener">tiktok.com/legal/privacy-policy</a></li>
+    </ul>
+
+    <h3>Service providers (data processors acting on our behalf)</h3>
+    <ul>
+      <li><strong>AI content tools:</strong> We use AI platforms (including large language model providers) to assist with content creation. These providers act as data processors under our instructions</li>
+      <li><strong>Email marketing platforms:</strong> To send email campaigns on your behalf, we use email service providers who process subscriber data under your direction</li>
+      <li><strong>Analytics tools:</strong> We may use analytics platforms to monitor campaign performance</li>
+      <li><strong>Cloud storage:</strong> We use secure cloud infrastructure to store data related to your account</li>
+    </ul>
+
+    <h3>Legal requirements</h3>
+    <p>We may disclose your data if required to do so by law, in response to valid legal requests from law enforcement authorities, or to protect the rights, property, or safety of Nexura Marketing, our clients, or others.</p>
+
+    <h3>International transfers</h3>
+    <p>Some of our third-party service providers are based outside the UK or EEA. Where we transfer data internationally, we ensure appropriate safeguards are in place, such as UK International Data Transfer Agreements (IDTAs) or equivalent protections.</p>
+  </div>
+
+  <!-- 6 -->
+  <div class="section-block" id="retention">
+    <h2><span class="num">6</span> Data Retention</h2>
+    <p>We retain your personal data only for as long as necessary for the purposes described in this policy, and in accordance with our legal obligations.</p>
+    <ul>
+      <li><strong>Active client data:</strong> Retained for the duration of our service agreement with you</li>
+      <li><strong>Post-contract data:</strong> Following termination of your account, we retain basic account records for 6 years to comply with UK tax and legal requirements</li>
+      <li><strong>Communications:</strong> WhatsApp and email correspondence is retained for 2 years after the last interaction, unless you request earlier deletion</li>
+      <li><strong>Social media credentials:</strong> Access tokens and credentials are deleted within 30 days of contract termination</li>
+      <li><strong>Marketing analytics:</strong> Aggregated performance data (which does not personally identify individuals) may be retained indefinitely for benchmarking purposes</li>
+    </ul>
+    <p>When data is no longer required, we securely delete or anonymise it.</p>
+  </div>
+
+  <!-- 7 -->
+  <div class="section-block" id="rights">
+    <h2><span class="num">7</span> Your Rights Under UK GDPR</h2>
+    <p>As a data subject, you have the following rights regarding your personal data. You can exercise these rights at any time by contacting us at <a href="mailto:nexura@nexuramarketing.co.uk">nexura@nexuramarketing.co.uk</a>.</p>
+    <ul>
+      <li><strong>Right to access:</strong> You have the right to request a copy of the personal data we hold about you (a Subject Access Request)</li>
+      <li><strong>Right to rectification:</strong> You have the right to request correction of inaccurate or incomplete personal data</li>
+      <li><strong>Right to erasure:</strong> You have the right to request deletion of your personal data ("the right to be forgotten"), subject to certain legal exceptions</li>
+      <li><strong>Right to restrict processing:</strong> You have the right to request that we limit how we use your data in certain circumstances</li>
+      <li><strong>Right to data portability:</strong> Where processing is based on consent or contract, you have the right to receive your data in a structured, commonly used, machine-readable format</li>
+      <li><strong>Right to object:</strong> You have the right to object to processing based on legitimate interests, and to object to direct marketing at any time</li>
+      <li><strong>Rights related to automated decision-making:</strong> You have the right not to be subject to solely automated decisions that have a significant effect on you</li>
+      <li><strong>Right to withdraw consent:</strong> Where processing is based on consent, you may withdraw that consent at any time without affecting the lawfulness of prior processing</li>
+    </ul>
+    <div class="info-box">
+      <p>We will respond to all valid requests within <strong>one calendar month</strong>. In complex cases, we may extend this by a further two months, and will notify you accordingly. We will not charge a fee for exercising your rights unless requests are manifestly unfounded or excessive.</p>
+    </div>
+    <h3>Right to complain</h3>
+    <p>If you are dissatisfied with how we handle your data, you have the right to lodge a complaint with the UK's supervisory authority, the Information Commissioner's Office (ICO):</p>
+    <ul>
+      <li>Website: <a href="https://ico.org.uk" target="_blank" rel="noopener">ico.org.uk</a></li>
+      <li>Helpline: 0303 123 1113</li>
+    </ul>
+  </div>
+
+  <!-- 8 -->
+  <div class="section-block" id="security">
+    <h2><span class="num">8</span> Data Security</h2>
+    <p>We take the security of your personal data seriously and have implemented appropriate technical and organisational measures to protect it against unauthorised access, disclosure, alteration, or destruction.</p>
+    <ul>
+      <li>All data is stored on encrypted, access-controlled cloud infrastructure</li>
+      <li>Access to client data is restricted to authorised personnel on a need-to-know basis</li>
+      <li>Social media credentials and API tokens are stored using industry-standard encryption</li>
+      <li>We use secure, encrypted communication channels where possible</li>
+      <li>We regularly review and update our security practices</li>
+    </ul>
+    <p>In the event of a personal data breach that is likely to result in a risk to your rights and freedoms, we will notify the ICO within 72 hours and inform you without undue delay, in accordance with our obligations under UK GDPR Article 33–34.</p>
+  </div>
+
+  <!-- 9 -->
+  <div class="section-block" id="cookies">
+    <h2><span class="num">9</span> Cookies Policy</h2>
+    <p>Our website uses cookies and similar technologies to ensure proper functioning and to understand how visitors use it. A cookie is a small text file stored on your device.</p>
+
+    <h3>Essential cookies</h3>
+    <p>These cookies are necessary for the website to function correctly. They cannot be disabled. They include cookies that remember your cookie preferences and ensure basic security.</p>
+
+    <h3>Analytics cookies</h3>
+    <p>We may use analytics cookies (such as those provided by privacy-focused analytics tools) to understand how visitors interact with our website — for example, which pages are visited most often. This data is aggregated and anonymous. We will ask for your consent before setting these cookies.</p>
+
+    <h3>Managing cookies</h3>
+    <p>You can control and delete cookies through your browser settings. Most browsers allow you to refuse cookies, delete existing cookies, or set preferences for specific sites. Note that disabling certain cookies may affect website functionality.</p>
+    <p>For more information about cookies and how to manage them, visit <a href="https://www.allaboutcookies.org" target="_blank" rel="noopener">allaboutcookies.org</a>.</p>
+
+    <div class="warn-box">
+      <p>We do not use advertising or tracking cookies for behavioural profiling. We do not share cookie data with advertising networks.</p>
+    </div>
+  </div>
+
+  <!-- 10 -->
+  <div class="section-block" id="changes">
+    <h2><span class="num">10</span> Changes to This Privacy Policy</h2>
+    <p>We may update this Privacy Policy from time to time to reflect changes in our services, legal requirements, or data practices. When we make material changes, we will:</p>
+    <ul>
+      <li>Update the "Last updated" date at the top of this policy</li>
+      <li>Notify active clients via WhatsApp or email</li>
+    </ul>
+    <p>We encourage you to review this policy periodically. Continued use of our services after changes are posted constitutes acceptance of the updated policy.</p>
+  </div>
+
+  <!-- 11 -->
+  <div class="section-block" id="contact">
+    <h2><span class="num">11</span> Contact Us</h2>
+    <p>If you have any questions, concerns, or requests relating to this Privacy Policy or our data practices, please contact us:</p>
+    <div class="info-box">
+      <p>
+        <strong>Nexura Marketing</strong><br/>
+        London, UK<br/><br/>
+        <strong>Email:</strong> <a href="mailto:nexura@nexuramarketing.co.uk">nexura@nexuramarketing.co.uk</a><br/>
+        <strong>WhatsApp:</strong> <a href="https://wa.me/447591771279" target="_blank" rel="noopener">+44 7591 771279</a><br/><br/>
+        We aim to respond to all data protection enquiries within <strong>5 working days</strong>.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="margin-bottom:0.75rem;display:inline-flex;">
+          <div class="nav-logo-mark">N</div>
+          <span class="nav-logo-text">Nexura Marketing</span>
+        </a>
+        <p>AI-powered marketing for London's hospitality businesses. Your entire marketing team, delivered through WhatsApp.</p>
+      </div>
+      <div class="footer-col"><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="index.html#how-it-works">How It Works</a></li></ul></div>
+      <div class="footer-col"><h4>Legal</h4><ul><li><a href="privacy.html">Privacy Policy</a></li><li><a href="privacy.html#cookies">Cookie Policy</a></li><li><a href="privacy.html#rights">Your Rights</a></li></ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul><li><a href="mailto:nexura@nexuramarketing.co.uk">nexura@nexuramarketing.co.uk</a></li><li><a href="https://wa.me/447591771279" target="_blank" rel="noopener">+44 7591 771279</a></li><li><a href="https://wa.me/447591771279?text=Hey%20Nexura%2C%20I%27m%20interested%20in%20finding%20out%20more" target="_blank" rel="noopener">WhatsApp Us</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Nexura Marketing. London, UK. All rights reserved.</p>
+      <p>Designed with Google Stitch · Built for London hospitality</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 40));
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+  hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  hamburger.addEventListener('keydown', e => { if (e.key==='Enter'||e.key===' ') navLinks.classList.toggle('open'); });
+</script>
+
+</body>
+</html>

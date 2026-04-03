@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexura Marketing — Your Entire Marketing Team. On WhatsApp.</title>
+  <meta name="description" content="AI-powered marketing for London's hospitality businesses. Social media, SEO, reviews, and more — all managed through WhatsApp." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── Hero ── */
+    #hero {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 8rem 2.5rem 5rem; overflow: hidden; z-index: 1;
+      background-image: url('images/hero.jpg');
+      background-size: cover; background-position: center top;
+    }
+    #hero::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(2,13,26,0.94) 0%, rgba(2,13,26,0.78) 50%, rgba(2,13,26,0.55) 100%);
+      z-index: 0;
+    }
+    #hero .hero-grid-bg, #hero .hero-glow, #hero .hero-inner,
+    #hero .hero-orb-1, #hero .hero-orb-2, #hero .hero-orb-3 { position: relative; z-index: 1; }
+
+    /* Animated gradient orbs inside hero */
+    .hero-orb-1, .hero-orb-2, .hero-orb-3 { position: absolute; border-radius: 50%; pointer-events: none; }
+    .hero-orb-1 {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(125,216,205,0.13) 0%, transparent 65%);
+      top: -100px; left: -80px;
+      animation: orbDrift1 18s ease-in-out infinite; will-change: transform;
+    }
+    .hero-orb-2 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(232,185,49,0.07) 0%, transparent 65%);
+      top: 40%; right: 5%;
+      animation: orbDrift2 24s ease-in-out infinite; will-change: transform;
+    }
+    .hero-orb-3 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(125,216,205,0.08) 0%, transparent 65%);
+      bottom: -50px; left: 35%;
+      animation: orbDrift3 20s ease-in-out infinite; will-change: transform;
+    }
+    @keyframes orbDrift1 { 0%,100%{transform:translate(0,0)} 40%{transform:translate(60px,80px)} 70%{transform:translate(-30px,40px)} }
+    @keyframes orbDrift2 { 0%,100%{transform:translate(0,0)} 35%{transform:translate(-50px,-60px)} 65%{transform:translate(30px,-30px)} }
+    @keyframes orbDrift3 { 0%,100%{transform:translate(0,0)} 45%{transform:translate(40px,-50px)} 75%{transform:translate(-20px,20px)} }
+
+    .hero-grid-bg {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(125,216,205,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(125,216,205,0.035) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 85% 85% at 50% 0%, black 40%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 85% 85% at 50% 0%, black 40%, transparent 100%);
+    }
+    .hero-glow {
+      position: absolute; top: -80px; left: 50%; transform: translateX(-50%);
+      width: 120%; max-width: 1000px; height: 700px;
+      background: radial-gradient(ellipse at center top, rgba(125,216,205,0.14) 0%, rgba(125,216,205,0.03) 50%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative; max-width: 1320px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 5rem; align-items: center;
+    }
+
+    /* MASSIVE hero typography */
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      background: rgba(125,216,205,0.07); border: 1px solid rgba(125,216,205,0.18);
+      border-radius: 50px; font-size: 0.7875rem; font-weight: 600; color: var(--teal);
+      letter-spacing: 0.04em;
+      margin-bottom: 1.75rem;
+      animation: fadeUp 0.8s var(--ease-out) both;
+    }
+    .hero-badge-dot {
+      width: 7px; height: 7px; background: var(--teal); border-radius: 50%;
+      animation: pulse 2.5s ease-in-out infinite;
+      box-shadow: 0 0 8px rgba(125,216,205,0.6);
+    }
+    .hero-headline {
+      font-family: 'Manrope', sans-serif;
+      font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 800;
+      line-height: 1.02; letter-spacing: -0.04em; color: var(--text); margin-bottom: 1.75rem;
+      animation: fadeUp 0.9s 0.1s var(--ease-out) both;
+    }
+    .hero-headline .accent {
+      color: var(--teal);
+      background: linear-gradient(135deg, var(--teal), var(--teal-light));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: 1.1875rem; color: var(--text-muted); line-height: 1.75;
+      max-width: 500px; margin-bottom: 3rem;
+      animation: fadeUp 0.9s 0.2s var(--ease-out) both;
+    }
+    .hero-actions {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      animation: fadeUp 0.9s 0.3s var(--ease-out) both;
+    }
+
+    /* Phone mockup */
+    .hero-visual {
+      position: relative; display: flex; align-items: center; justify-content: center;
+      animation: fadeUp 1s 0.4s var(--ease-out) both;
+    }
+    .phone-frame {
+      position: relative; width: 290px; height: 580px;
+      background: linear-gradient(180deg, var(--surface-high) 0%, var(--surface) 100%);
+      border-radius: 44px;
+      border: 1.5px solid rgba(125,216,205,0.18);
+      box-shadow:
+        0 60px 120px rgba(0,0,0,0.6),
+        0 0 0 1px rgba(255,255,255,0.04) inset,
+        inset 0 1px 0 rgba(255,255,255,0.07),
+        0 0 60px rgba(125,216,205,0.06);
+      overflow: hidden; z-index: 2;
+    }
+    .phone-notch {
+      position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
+      width: 100px; height: 28px; background: var(--bg); border-radius: 20px; z-index: 10;
+    }
+    .phone-screen { width: 100%; height: 100%; padding: 55px 0 0; overflow: hidden; background: #081420; }
+    .wa-header { display: flex; align-items: center; gap: 0.6rem; padding: 0.65rem 1rem; background: #1a2535; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .wa-avatar { width: 36px; height: 36px; background: linear-gradient(135deg, var(--teal), var(--teal-light)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 800; color: #002e2a; flex-shrink: 0; }
+    .wa-name { font-size: 0.75rem; font-weight: 700; color: var(--text); }
+    .wa-status { font-size: 0.6rem; color: var(--teal); }
+    .wa-messages { padding: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem; overflow: hidden; }
+    .msg { max-width: 85%; padding: 0.5rem 0.75rem; border-radius: 12px; font-size: 0.65rem; line-height: 1.4; }
+    .msg-in { background: #1e3a2e; color: #c8e6c9; align-self: flex-start; border-bottom-left-radius: 4px; }
+    .msg-out { background: #1a2535; color: var(--text-muted); align-self: flex-end; border-bottom-right-radius: 4px; }
+    .msg-time { font-size: 0.55rem; opacity: 0.6; margin-top: 2px; text-align: right; }
+    .wa-input { position: absolute; bottom: 0; left: 0; right: 0; padding: 0.5rem 0.75rem; background: #1a2535; display: flex; align-items: center; gap: 0.5rem; }
+    .wa-input-bar { flex: 1; height: 32px; background: #081420; border-radius: 20px; border: 1px solid rgba(255,255,255,0.07); font-size: 0.6rem; color: var(--text-muted); padding: 0 0.75rem; display: flex; align-items: center; }
+
+    /* Floating stat cards */
+    .stat-card {
+      position: absolute;
+      background: rgba(22,36,54,0.85);
+      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(125,216,205,0.14);
+      border-radius: var(--radius-md);
+      padding: 0.875rem 1.125rem; white-space: nowrap;
+      box-shadow: 0 24px 48px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.03) inset;
+    }
+    .stat-card-label { font-size: 0.625rem; color: var(--text-muted); margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .stat-card-value { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 1.05rem; color: var(--teal); letter-spacing: -0.02em; }
+    .stat-card-sub { font-size: 0.6rem; color: var(--text-muted); margin-top: 1px; }
+    .stat-1 { top: 70px; right: -38px; animation: floatCard 5s ease-in-out infinite; }
+    .stat-2 { bottom: 130px; left: -48px; animation: floatCard 5s 1.6s ease-in-out infinite; }
+    .stat-3 { bottom: 36px; right: -24px; animation: floatCard 5s 3.2s ease-in-out infinite; }
+    @keyframes floatCard { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-10px) rotate(0.5deg)} }
+
+    @media (max-width: 960px) {
+      .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 3.5rem; }
+      .hero-sub { margin: 0 auto 3rem; }
+      .hero-actions { justify-content: center; }
+    }
+
+    /* ── How It Works ── */
+    #how-it-works { padding: 10rem 2.5rem; background: var(--surface-low); position: relative; overflow: hidden; }
+    .hiw-header { text-align: center; margin-bottom: 4.5rem; }
+    .hiw-header .section-label { justify-content: center; }
+    .hiw-header .section-sub { margin: 0 auto; }
+    .hiw-steps {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+      position: relative; margin-top: 3rem;
+    }
+    .hiw-steps::before {
+      content: ''; position: absolute; top: 52px;
+      left: calc(16.67% + 1rem); right: calc(16.67% + 1rem);
+      height: 1px; background: linear-gradient(90deg, transparent, var(--teal), var(--teal), transparent); opacity: 0.3;
+    }
+    .hiw-step {
+      background: rgba(28,43,62,0.6); backdrop-filter: blur(20px);
+      border: 1px solid var(--outline); border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem; text-align: center;
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    }
+    .hiw-step:hover { transform: translateY(-6px); border-color: rgba(130,220,210,0.3); box-shadow: 0 20px 50px rgba(130,220,210,0.08); }
+    .hiw-num {
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, var(--teal), var(--teal-light));
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 1.25rem;
+      color: #003733; margin: 0 auto 1.5rem; position: relative; z-index: 1;
+    }
+    .hiw-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .hiw-step h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--text); }
+    .hiw-step p { font-size: 0.9375rem; color: var(--text-muted); line-height: 1.7; }
+    @media (max-width: 768px) { .hiw-steps { grid-template-columns: 1fr; } .hiw-steps::before { display: none; } }
+
+    /* ── Social Proof ── */
+    #proof {
+      padding: 10rem 2.5rem;
+      background-image: url('images/bg-proof.jpg');
+      background-size: cover; background-position: center;
+      position: relative;
+    }
+    #proof::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(4,20,38,0.88) 0%, rgba(4,20,38,0.82) 100%);
+      z-index: 0;
+    }
+    #proof .section-inner { position: relative; z-index: 1; }
+    .proof-header { text-align: center; margin-bottom: 4rem; }
+    .proof-header .section-label { justify-content: center; }
+    .proof-header .section-sub { margin: 0 auto; }
+    .proof-trusted {
+      display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+      margin-top: 1.25rem; flex-wrap: wrap;
+    }
+    .proof-trusted-dot { width: 5px; height: 5px; background: var(--teal); border-radius: 50%; opacity: 0.6; }
+    .proof-trusted-text { font-size: 0.875rem; color: var(--text-muted); font-weight: 500; }
+    .stats-row {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem;
+      margin-bottom: 4rem;
+    }
+    .stat-block {
+      background: rgba(28,43,62,0.5); border: 1px solid var(--outline);
+      border-radius: var(--radius-md); padding: 2rem 1.5rem; text-align: center;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .stat-block:hover { border-color: rgba(130,220,210,0.25); transform: translateY(-3px); }
+    .stat-block-num {
+      font-family: 'Manrope', sans-serif; font-size: 2.75rem; font-weight: 800;
+      color: var(--teal); letter-spacing: -0.03em; line-height: 1; margin-bottom: 0.5rem;
+    }
+    .stat-block-label { font-size: 0.875rem; color: var(--text-muted); line-height: 1.5; }
+    .testimonials-header { text-align: center; margin-bottom: 2rem; }
+    .testimonials-header h3 { font-size: 1.5rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
+    .testimonials-header p { font-size: 0.9375rem; color: var(--text-muted); }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .testimonial-card {
+      background: rgba(28,43,62,0.4); border: 1px solid var(--outline);
+      border-radius: var(--radius-md); padding: 2rem 1.75rem;
+      transition: border-color 0.3s;
+    }
+    .testimonial-card:hover { border-color: rgba(130,220,210,0.2); }
+    .testimonial-stars { color: var(--gold); font-size: 0.9rem; margin-bottom: 1rem; letter-spacing: 2px; }
+    .testimonial-text {
+      font-size: 0.9375rem; color: var(--text-muted); line-height: 1.7;
+      font-style: italic; margin-bottom: 1.5rem;
+    }
+    .testimonial-author { display: flex; align-items: center; gap: 0.75rem; }
+    .testimonial-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(130,220,210,0.1); border: 1px dashed rgba(130,220,210,0.2);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--teal); font-size: 1rem; flex-shrink: 0;
+    }
+    .testimonial-name { font-size: 0.875rem; font-weight: 600; color: var(--text); }
+    .testimonial-biz { font-size: 0.775rem; color: var(--text-muted); }
+    .testimonial-coming-soon {
+      display: inline-block; margin-top: 0.25rem;
+      padding: 0.2rem 0.6rem;
+      background: rgba(130,220,210,0.06); border: 1px solid rgba(130,220,210,0.15);
+      border-radius: 50px; font-size: 0.7rem; color: var(--teal);
+      font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    @media (max-width: 900px) { .stats-row { grid-template-columns: repeat(2, 1fr); } .testimonials-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 540px) { .stats-row { grid-template-columns: 1fr 1fr; } }
+  </style>
+</head>
+<body>
+
+<div class="ambient"></div>
+
+<!-- ── NAV ── -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">N</div>
+    <span class="nav-logo-text">Nexura</span>
+  </a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="index.html#how-it-works">How It Works</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="https://wa.me/447591771279?text=Hey%20Nexura%2C%20I%27m%20interested%20in%20finding%20out%20more" class="nav-cta" target="_blank" rel="noopener">Get Started</a></li>
+  </ul>
+  <div class="nav-hamburger" id="hamburger" aria-label="Open menu" role="button" tabindex="0">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="hero-orb-1"></div>
+  <div class="hero-orb-2"></div>
+  <div class="hero-orb-3"></div>
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Now accepting new clients
+      </div>
+      <h1 class="hero-headline">
+        Your entire<br/>marketing team.<br/><span class="accent">On WhatsApp.</span>
+      </h1>
+      <p class="hero-sub">
+        Social media, Google SEO, reviews, email campaigns, competitor monitoring — the full stack of a modern marketing department. Managed by AI. Delivered through a single WhatsApp number.
+      </p>
+      <div class="hero-actions">
+        <a href="https://wa.me/447591771279?text=Hey%20Nexura%2C%20I%27m%20interested%20in%20finding%20out%20more" class="btn-primary" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Get Started
+        </a>
+        <a href="#how-it-works" class="btn-secondary">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+          See How It Works
+        </a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="wa-header">
+            <div class="wa-avatar">N</div>
+            <div><div class="wa-name">Nexura Marketing</div><div class="wa-status">● Online</div></div>
+          </div>
+          <div class="wa-messages">
+            <div class="msg msg-out">Sort my Instagram this week — we've got a bank holiday special 🍺<div class="msg-time">09:14</div></div>
+            <div class="msg msg-in">On it! I'll create 3 posts for the bank holiday — Monday teaser, Sunday reveal, Tuesday recap. Optimised captions and hashtags. Any photos?<div class="msg-time">09:14</div></div>
+            <div class="msg msg-out">Yeah sending now<div class="msg-time">09:16</div></div>
+            <div class="msg msg-in">Perfect. Also — your Google Business profile is missing Monday's hours. Want me to update that too?<div class="msg-time">09:16</div></div>
+            <div class="msg msg-out">Yes please. Also can we reply to that 1-star review?<div class="msg-time">09:18</div></div>
+            <div class="msg msg-in">Draft reply sent. Professional, empathetic, invites them back. Review it and I'll post. 🎯<div class="msg-time">09:18</div></div>
+          </div>
+          <div class="wa-input"><div class="wa-input-bar">Message Nexura...</div></div>
+        </div>
+      </div>
+      <div class="stat-card stat-1"><div class="stat-card-label">This month</div><div class="stat-card-value">47 posts</div><div class="stat-card-sub">↑ 12% engagement</div></div>
+      <div class="stat-card stat-2"><div class="stat-card-label">Google ranking</div><div class="stat-card-value">#1 Local</div><div class="stat-card-sub">best pub near me</div></div>
+      <div class="stat-card stat-3"><div class="stat-card-label">Reviews</div><div class="stat-card-value">4.8 ★</div><div class="stat-card-sub">32 new this month</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PLATFORM BAR ── -->
+<div class="platform-bar">
+  <div class="platform-bar-inner">
+    <span class="platform-label">Managing your presence across</span>
+    <div class="platform-icons">
+      <div class="platform-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg> Instagram</div>
+      <div class="platform-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg> Facebook</div>
+      <div class="platform-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.27 8.27 0 004.84 1.55V6.79a4.85 4.85 0 01-1.07-.1z"/></svg> TikTok</div>
+      <div class="platform-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/></svg> Google</div>
+      <div class="platform-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> WhatsApp</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── HOW IT WORKS ── -->
+<section id="how-it-works" class="dot-pattern">
+  <div class="section-inner">
+    <div class="hiw-header reveal">
+      <div class="section-label">How It Works</div>
+      <h2 class="section-title">Three steps to a full marketing operation</h2>
+      <p class="section-sub">No portals. No dashboards. No onboarding calls. You text us, we handle the rest.</p>
+    </div>
+    <div class="hiw-steps">
+      <div class="hiw-step reveal fade-delay-1">
+        <div class="hiw-icon">💬</div>
+        <div class="hiw-num">1</div>
+        <h3>Text us on WhatsApp</h3>
+        <p>Tell us what you need, send a photo, or just say "sort my marketing." Use the same WhatsApp you already use. No new apps, no passwords, no portals.</p>
+      </div>
+      <div class="hiw-step reveal fade-delay-3">
+        <div class="hiw-icon">⚡</div>
+        <div class="hiw-num">2</div>
+        <h3>Our AI handles everything</h3>
+        <p>Content creation, scheduling, Google updates, review responses, SEO, email campaigns. Your AI marketing team gets to work immediately — 24/7, no delays.</p>
+      </div>
+      <div class="hiw-step reveal fade-delay-5">
+        <div class="hiw-icon">📈</div>
+        <div class="hiw-num">3</div>
+        <h3>You run your business</h3>
+        <p>Focus on your pub, restaurant or café. Check your monthly performance report to see what's working, what's growing, and what we're doing next.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SOCIAL PROOF ── -->
+<section id="proof">
+  <div class="section-inner">
+    <div class="proof-header reveal">
+      <div class="section-label">Why Nexura</div>
+      <h2 class="section-title">Trusted by London's hospitality businesses</h2>
+      <p class="section-sub">A complete marketing operation for a fraction of what it would cost in-house. No salaries, no agencies, no guesswork.</p>
+      <div class="proof-trusted">
+        <span class="proof-trusted-dot"></span>
+        <span class="proof-trusted-text">Pubs · Restaurants · Cafés · Bars · Hotels</span>
+        <span class="proof-trusted-dot"></span>
+        <span class="proof-trusted-text">Across London</span>
+        <span class="proof-trusted-dot"></span>
+      </div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-block reveal fade-delay-1">
+        <div class="stat-block-num" data-target="8">0</div>
+        <div class="stat-block-label">Marketing services included in every plan</div>
+      </div>
+      <div class="stat-block reveal fade-delay-2">
+        <div class="stat-block-num" data-target="0" data-prefix="£">£0</div>
+        <div class="stat-block-label">Setup fees. No contracts. Cancel anytime.</div>
+      </div>
+      <div class="stat-block reveal fade-delay-3">
+        <div class="stat-block-num" data-target="24" data-suffix="h">0h</div>
+        <div class="stat-block-label">Average time to first content going live</div>
+      </div>
+      <div class="stat-block reveal fade-delay-4">
+        <div class="stat-block-num" data-target="100" data-suffix="%">0%</div>
+        <div class="stat-block-label">Managed through WhatsApp. Nothing else to learn.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── APPLY CTA ── -->
+<section id="apply">
+  <div class="apply-inner">
+    <div class="apply-eyebrow reveal">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      London's leading hospitality marketing
+    </div>
+    <h2 class="apply-title reveal">Ready to grow<br/><span>your business?</span></h2>
+    <p class="apply-desc reveal">Text us on WhatsApp, tell us about your venue, and we'll have you live within 24 hours. No contracts, no setup fees — just results.</p>
+    <div class="apply-actions reveal">
+      <a href="https://wa.me/447591771279?text=Hey%20Nexura%2C%20I%27m%20interested%20in%20finding%20out%20more" class="btn-whatsapp" target="_blank" rel="noopener">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Get Started
+      </a>
+      <a href="services.html" class="btn-secondary">See All Services</a>
+    </div>
+    <div class="apply-note reveal">
+      <span class="apply-note-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> No contracts</span>
+      <span class="apply-note-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> No setup fees</span>
+      <span class="apply-note-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Live within 24 hours</span>
+      <span class="apply-note-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Cancel anytime</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="margin-bottom:0.75rem;display:inline-flex;">
+          <div class="nav-logo-mark">N</div>
+          <span class="nav-logo-text">Nexura Marketing</span>
+        </a>
+        <p>AI-powered marketing for London's hospitality businesses. Your entire marketing team, delivered through WhatsApp.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="index.html#how-it-works">How It Works</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="privacy.html#cookies">Cookie Policy</a></li>
+          <li><a href="privacy.html#rights">Your Rights</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:nexura@nexuramarketing.co.uk">nexura@nexuramarketing.co.uk</a></li>
+          <li><a href="https://wa.me/447591771279" target="_blank" rel="noopener">+44 7591 771279</a></li>
+          <li><a href="https://wa.me/447591771279?text=Hey%20Nexura%2C%20I%27m%20interested%20in%20finding%20out%20more" target="_blank" rel="noopener">WhatsApp Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Nexura Marketing. London, UK. All rights reserved.</p>
+      <p>Designed with Google Stitch · Built for London hospitality</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 40));
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+  hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  hamburger.addEventListener('keydown', e => { if (e.key==='Enter'||e.key===' ') navLinks.classList.toggle('open'); });
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); navLinks.classList.remove('open'); }
+    });
+  });
+  const ro = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+  document.querySelectorAll('.stat-block-num[data-target]').forEach(el => {
+    const target = parseInt(el.dataset.target);
+    const prefix = el.dataset.prefix || '';
+    const suffix = el.dataset.suffix || '';
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          let s = 0; const dur = 1600; const step = target / (dur/16);
+          const upd = () => { s = Math.min(s+step, target); el.textContent = prefix + Math.floor(s) + suffix; if (s < target) requestAnimationFrame(upd); };
+          requestAnimationFrame(upd); io.unobserve(el);
+        }
+      });
+    }, {threshold:0.5});
+    io.observe(el);
+  });
+</script>
+</body>
+</html>

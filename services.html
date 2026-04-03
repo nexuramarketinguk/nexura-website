@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — Nexura Marketing</title>
+  <meta name="description" content="Full-service AI marketing for London hospitality — social media, Google Business Profile, review management, local SEO, email marketing, and more. All through WhatsApp." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── Services grid ── */
+    #services {
+      padding: 7rem 2.5rem 10rem;
+      background-image: url('images/bg-services.jpg');
+      background-size: cover; background-position: center;
+      position: relative;
+    }
+    #services::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(2,13,26,0.92) 0%, rgba(2,13,26,0.87) 60%, rgba(2,13,26,0.94) 100%);
+      z-index: 0; pointer-events: none;
+    }
+    #services .section-inner { position: relative; z-index: 1; }
+    .services-intro { max-width: 820px; margin: 0 auto 5rem; text-align: center; }
+    .services-intro .section-label { justify-content: center; }
+    .services-intro .section-sub { margin: 0 auto; }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem;
+    }
+    .service-card {
+      background: rgba(12,28,47,0.6); border: 1px solid rgba(125,216,205,0.09);
+      border-radius: var(--radius-md); padding: 2rem;
+      transition: all 0.3s var(--ease-out); cursor: default;
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    }
+    .service-card:hover {
+      background: rgba(22,42,64,0.85); border-color: rgba(125,216,205,0.25);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.35), 0 0 30px rgba(125,216,205,0.05);
+    }
+    .service-icon {
+      width: 52px; height: 52px; background: rgba(125,216,205,0.08);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.375rem; color: var(--teal); font-size: 1.5rem;
+      transition: background 0.3s, box-shadow 0.3s;
+      border: 1px solid rgba(125,216,205,0.1);
+    }
+    .service-card:hover .service-icon {
+      background: rgba(125,216,205,0.14);
+      box-shadow: 0 0 20px rgba(125,216,205,0.1);
+    }
+    .service-card h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
+    .service-card p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.65; }
+    .service-tag {
+      display: inline-block; margin-top: 0.875rem; font-size: 0.68rem; font-weight: 700;
+      padding: 0.2rem 0.7rem; background: rgba(232,185,49,0.08); color: var(--gold);
+      border-radius: 50px; text-transform: uppercase; letter-spacing: 0.08em;
+      border: 1px solid rgba(232,185,49,0.15);
+    }
+    @media (max-width: 1100px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .services-grid { grid-template-columns: 1fr; } }
+
+    /* ── WhatsApp flow callout ── */
+    .wa-callout {
+      margin: 6rem auto 0; max-width: 960px;
+      background: rgba(12,28,47,0.7);
+      border: 1px solid rgba(125,216,205,0.18);
+      border-radius: var(--radius-lg); padding: 3.5rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center;
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.02) inset;
+    }
+    .wa-callout h3 { font-size: 1.875rem; font-weight: 800; line-height: 1.15; margin-bottom: 1.125rem; letter-spacing: -0.025em; }
+    .wa-callout h3 span { color: var(--teal); }
+    .wa-callout p { font-size: 0.9375rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 1.75rem; }
+    .wa-flow { display: flex; flex-direction: column; gap: 0.875rem; }
+    .wa-flow-item {
+      display: flex; align-items: flex-start; gap: 0.875rem;
+      padding: 1rem 1.125rem; background: rgba(2,13,26,0.5);
+      border-radius: var(--radius-sm); border: 1px solid var(--outline);
+      transition: border-color 0.2s;
+    }
+    .wa-flow-item:hover { border-color: rgba(125,216,205,0.18); }
+    .wa-flow-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+    .wa-flow-text { font-size: 0.875rem; color: var(--text-muted); line-height: 1.55; }
+    .wa-flow-text strong { color: var(--text); }
+    @media (max-width: 760px) { .wa-callout { grid-template-columns: 1fr; padding: 2.25rem; } }
+  </style>
+</head>
+<body>
+<div class="ambient"></div>
+
+<!-- ── NAV ── -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">N</div>
+    <span class="nav-logo-text">Nexura</span>
+  </a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#how-it-works">How It Works</a></li>
+    <li><a href="services.html" class="active">Services</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="https://wa.me/447591771279?text=Hey%20Nexura%2C%20I%27m%20interested%20in%20finding%20out%20more" class="nav-cta" target="_blank" rel="noopener">Get Started</a></li>
+  </ul>
+  <div class="nav-hamburger" id="hamburger" aria-label="Open menu" role="button" tabindex="0">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ── PAGE HERO ── -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="section-label" style="justify-content:center;">Full-Service Marketing</div>
+    <h1>Everything a marketing<br/><span>department does.</span></h1>
+    <p>Eight services. One WhatsApp number. Each one would cost a separate agency retainer if you sourced them individually — you get all of them, fully managed, from day one.</p>
+  </div>
+</div>
+
+<!-- ── SERVICES ── -->
+<section id="services">
+  <div class="section-inner">
+    <div class="services-intro reveal">
+      <p class="section-sub" style="max-width:680px;">This isn't just social media posting. Nexura replaces your entire marketing function — content, SEO, reputation management, analytics, strategy. The difference is it all arrives through WhatsApp.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal fade-delay-1">
+        <div class="service-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <h3>Social Media Management</h3>
+        <p>Instagram, Facebook, and TikTok. AI-generated content, strategic scheduling, and consistent posting that builds a real audience — not just filler content.</p>
+        <span class="service-tag">Instagram · Facebook · TikTok</span>
+      </div>
+      <div class="service-card reveal fade-delay-2">
+        <div class="service-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <h3>Google Business Profile</h3>
+        <p>Full optimisation, regular posts, photo management, accurate opening hours, and everything that makes you rank when someone searches locally.</p>
+        <span class="service-tag">Local Search</span>
+      </div>
+      <div class="service-card reveal fade-delay-3">
+        <div class="service-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </div>
+        <h3>Review Management</h3>
+        <p>We monitor your Google reviews and draft professional, empathetic responses to every one — protecting your reputation automatically, around the clock.</p>
+        <span class="service-tag">Google Reviews</span>
+      </div>
+      <div class="service-card reveal fade-delay-4">
+        <div class="service-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h3>Local SEO</h3>
+        <p>Optimise your entire online presence so you rank when someone searches "best pub near me" or "restaurants in [your area]." Real, lasting visibility.</p>
+        <span class="service-tag">Search Ranking</span>
+      </div>
+      <div class="service-card reveal fade-delay-5">
+        <div class="service-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <h3>Email Marketing</h3>
+        <p>Automated campaigns that bring customers back. Seasonal offers, event reminders, loyalty emails — all written and sent for you, with no manual effort.</p>
+        <span class="service-tag">Repeat Business</span>
+      </div>
+      <div class="service-card reveal fade-delay-6">
+        <div class="service-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <h3>Monthly Performance Reports</h3>
+        <p>A full analytics report every month. What's growing, what's working, what we're planning next. Clear, jargon-free insights delivered to your WhatsApp.</p>
+        <span class="service-tag">Analytics</span>
+      </div>
+      <div class="service-card reveal fade-delay-7">
+        <div class="service-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <h3>Competitor Monitoring</h3>
+        <p>We track what nearby businesses are posting, promoting, and ranking for — and surface opportunities you can act on before they do.</p>
+        <span class="service-tag">Market Intelligence</span>
+      </div>
+      <div class="service-card reveal fade-delay-8">
+        <div class="service-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <h3>Content Strategy &amp; Calendar</h3>
+        <p>Proactive weekly content plans — not just reactive posting. We plan around your events, seasons, and local calendar so nothing gets missed.</p>
+        <span class="service-tag">Strategy</span>
+      </div>
+    </div>
+
+    <!-- WhatsApp flow callout -->
+    <div class="wa-callout reveal">
+      <div>
+        <h3>All of this, delivered through<br/><span>one WhatsApp.</span></h3>
+        <p>Every service above is triggered, reviewed, and confirmed through a single WhatsApp conversation. No logins. No dashboards. No apps to learn.</p>
+        <a href="https://wa.me/447591771279?text=Hey%20Nexura%2C%20I%27m%20interested%20in%20finding%20out%20more" class="btn-primary" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Get Started
+        </a>
+      </div>
+      <div class="wa-flow">
+        <div class="wa-flow-item"><span class="wa-flow-icon">💬</span><span class="wa-flow-text"><strong>You text us</strong> — "Can we do a Father's Day post this Sunday?"</span></div>
+        <div class="wa-flow-item"><span class="wa-flow-icon">⚡</span><span class="wa-flow-text"><strong>We handle it</strong> — content created, scheduled, and posted across all your platforms.</span></div>
+        <div class="wa-flow-item"><span class="wa-flow-icon">🔔</span><span class="wa-flow-text"><strong>You get notified</strong> — "Done. Post goes live Sunday at 11am. Here's a preview."</span></div>
+        <div class="wa-flow-item"><span class="wa-flow-icon">📊</span><span class="wa-flow-text"><strong>Monthly report</strong> — full breakdown of reach, engagement, and what's working.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── APPLY CTA ── -->
+<section id="apply">
+  <div class="apply-inner">
+    <div class="apply-eyebrow reveal">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      London's leading hospitality marketing
+    </div>
+    <h2 class="apply-title reveal">All 8 services.<br/><span>One WhatsApp.</span></h2>
+    <p class="apply-desc reveal">Every service on this page, fully managed, with no setup fees and no commitment. Text us on WhatsApp and we'll have everything live within 24 hours.</p>
+    <div class="apply-actions reveal">
+      <a href="https://wa.me/447591771279?text=Hey%20Nexura%2C%20I%27m%20interested%20in%20finding%20out%20more" class="btn-whatsapp" target="_blank" rel="noopener">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Get Started
+      </a>
+      <a href="pricing.html" class="btn-secondary">View Pricing</a>
+    </div>
+    <div class="apply-note reveal">
+      <span class="apply-note-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> No contracts</span>
+      <span class="apply-note-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> No setup fees</span>
+      <span class="apply-note-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Live within 24 hours</span>
+      <span class="apply-note-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Cancel anytime</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="margin-bottom:0.75rem;display:inline-flex;">
+          <div class="nav-logo-mark">N</div>
+          <span class="nav-logo-text">Nexura Marketing</span>
+        </a>
+        <p>AI-powered marketing for London's hospitality businesses. Your entire marketing team, delivered through WhatsApp.</p>
+      </div>
+      <div class="footer-col"><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="index.html#how-it-works">How It Works</a></li></ul></div>
+      <div class="footer-col"><h4>Legal</h4><ul><li><a href="privacy.html">Privacy Policy</a></li><li><a href="privacy.html#cookies">Cookie Policy</a></li><li><a href="privacy.html#rights">Your Rights</a></li></ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul><li><a href="mailto:nexura@nexuramarketing.co.uk">nexura@nexuramarketing.co.uk</a></li><li><a href="https://wa.me/447591771279" target="_blank" rel="noopener">+44 7591 771279</a></li><li><a href="https://wa.me/447591771279?text=Hey%20Nexura%2C%20I%27m%20interested%20in%20finding%20out%20more" target="_blank" rel="noopener">WhatsApp Us</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Nexura Marketing. London, UK. All rights reserved.</p>
+      <p>Designed with Google Stitch · Built for London hospitality</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 40));
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+  hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  hamburger.addEventListener('keydown', e => { if (e.key==='Enter'||e.key===' ') navLinks.classList.toggle('open'); });
+  const ro = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), {threshold:0.1, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+</script>
+</body>
+</html>
