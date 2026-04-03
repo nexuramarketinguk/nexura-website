@@ -171,6 +171,26 @@ nav.scrolled {
   box-shadow: 0 8px 24px rgba(0,0,0,0.3);
 }
 
+/* Apply Now — primary CTA, brighter + larger than btn-primary */
+.btn-apply {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 1rem 2.625rem;
+  background: linear-gradient(135deg, #6fd8ce, #9ef9ee, #6fd8ce);
+  background-size: 200% auto;
+  color: #001e1c; font-family: 'Manrope', sans-serif;
+  font-weight: 800; font-size: 1.0625rem; border-radius: 50px;
+  text-decoration: none; border: none; cursor: pointer;
+  transition: transform 0.25s var(--ease-spring), box-shadow 0.25s, background-position 0.4s;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.2) inset, 0 6px 28px rgba(125,216,205,0.35);
+  white-space: nowrap; letter-spacing: 0.01em;
+}
+.btn-apply:hover {
+  transform: translateY(-3px);
+  background-position: right center;
+  box-shadow: 0 20px 55px rgba(125,216,205,0.55), 0 0 0 1px rgba(255,255,255,0.2) inset;
+}
+.btn-apply:active { transform: translateY(-1px); }
+
 .btn-whatsapp {
   display: inline-flex; align-items: center; gap: 0.625rem;
   padding: 1.0625rem 2.5rem; background: #25D366; color: #fff;
