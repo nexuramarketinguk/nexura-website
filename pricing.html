@@ -106,15 +106,18 @@
       text-decoration: none; transition: all 0.25s var(--ease-out);
       letter-spacing: 0.01em;
     }
+    /* Apply Now card button — solid teal, dominant */
     .pricing-cta-primary {
-      background: linear-gradient(135deg, var(--teal), var(--teal-light));
-      color: #002e2a;
-      box-shadow: 0 4px 20px rgba(125,216,205,0.25);
+      background: #82DCD2;
+      color: #001e1c; font-weight: 800;
+      box-shadow: 0 4px 18px rgba(130,220,210,0.3);
     }
     .pricing-cta-primary:hover {
-      box-shadow: 0 12px 35px rgba(125,216,205,0.45);
+      background: #9ef9ee;
+      box-shadow: 0 14px 36px rgba(130,220,210,0.5);
       transform: translateY(-2px);
     }
+    /* Unused ghost style kept for safety */
     .pricing-cta-ghost {
       background: rgba(22,36,54,0.6); color: var(--text-muted);
       border: 1px solid rgba(125,216,205,0.1);
@@ -124,13 +127,17 @@
       border-color: rgba(125,216,205,0.25);
       transform: translateY(-1px);
     }
+    /* Chat on WhatsApp card button — ghost/secondary */
     .pricing-cta-wa {
-      background: #25D366; color: #fff;
+      background: transparent; color: var(--text-muted);
+      border: 1px solid rgba(37,211,102,0.3);
       display: flex; align-items: center; justify-content: center; gap: 0.5rem;
     }
+    .pricing-cta-wa svg { color: #25D366; }
     .pricing-cta-wa:hover {
-      background: #1ebe5a;
-      box-shadow: 0 8px 20px rgba(37,211,102,0.35);
+      border-color: rgba(37,211,102,0.65);
+      color: var(--text);
+      background: rgba(37,211,102,0.06);
       transform: translateY(-1px);
     }
     .pricing-card-actions { display: flex; flex-direction: column; gap: 0.625rem; }
@@ -174,7 +181,7 @@
     <li><a href="index.html#how-it-works">How It Works</a></li>
     <li><a href="services.html">Services</a></li>
     <li><a href="pricing.html" class="active">Pricing</a></li>
-    <li><a href="https://wa.me/447591771279?text=Hey%20Nexura%2C%20I%27m%20interested%20in%20finding%20out%20more" class="nav-cta" target="_blank" rel="noopener">Get Started</a></li>
+    <li><a href="https://nexura-services-production.up.railway.app/apply" class="nav-cta" target="_blank" rel="noopener">Apply Now</a></li>
   </ul>
   <div class="nav-hamburger" id="hamburger" aria-label="Open menu" role="button" tabindex="0">
     <span></span><span></span><span></span>
