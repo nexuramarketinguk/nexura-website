@@ -134,6 +134,46 @@ document.querySelectorAll('.btn').forEach(btn => {
   });
 });
 
+// -- WhatsApp chat: sequential bubble reveal when section enters ---
+const chatIO = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const thread = e.target;
+    const msgs = thread.querySelectorAll('.wa-msg, .wa-typing');
+    msgs.forEach(m => {
+      const delay = parseInt(m.dataset.delay || 0, 10);
+      setTimeout(() => m.classList.add('show'), delay);
+    });
+    // Surface floating badges a bit later
+    const stage = thread.closest('.phone-stage');
+    if (stage) {
+      const badges = stage.querySelectorAll('.phone-badge');
+      badges.forEach((b, i) => {
+        setTimeout(() => b.classList.add('show'), 1600 + i * 600);
+      });
+    }
+    chatIO.unobserve(thread);
+  });
+}, { threshold: 0.35 });
+document.querySelectorAll('.wa-thread').forEach(el => chatIO.observe(el));
+
+// -- 3D tilt on bento cards ----------------------------------------
+document.querySelectorAll('.bento-card').forEach(card => {
+  if (prefersReduced) return;
+  const threshold = 6;
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top) / r.height - 0.5;
+    card.style.setProperty('--rx', `${(y * -threshold).toFixed(2)}deg`);
+    card.style.setProperty('--ry', `${(x * threshold).toFixed(2)}deg`);
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.setProperty('--rx', '0deg');
+    card.style.setProperty('--ry', '0deg');
+  });
+});
+
 // -- Count-up spec numbers ------------------------------------------
 const countIO = new IntersectionObserver(entries => {
   entries.forEach(e => {

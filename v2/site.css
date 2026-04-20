@@ -1321,3 +1321,609 @@ footer.foot {
   .reveal { transition: none; opacity: 1; transform: none; }
   * { scroll-behavior: auto !important; }
 }
+
+/* =================================================================
+   SHOWCASE — animated phone + WhatsApp thread
+   ================================================================= */
+
+.showcase {
+  position: relative;
+  padding: clamp(5rem, 10vw, 9rem) var(--pad-x);
+  background:
+    radial-gradient(ellipse at 80% 20%, rgba(232, 217, 183, 0.5) 0%, transparent 45%),
+    radial-gradient(ellipse at 20% 90%, rgba(124, 47, 34, 0.06) 0%, transparent 40%),
+    var(--paper);
+  overflow: hidden;
+}
+.showcase-inner {
+  max-width: var(--max); margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+}
+.showcase-copy {
+  max-width: 32ch;
+}
+.showcase-copy .eyebrow { margin-bottom: 1.25rem; }
+.showcase-copy h2 {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: clamp(2rem, 4.5vw, 3.75rem);
+  letter-spacing: -0.035em;
+  line-height: 1;
+  color: var(--ink);
+  margin: 0.75rem 0 1.5rem;
+}
+.showcase-copy h2 .accent { color: var(--oxblood); font-style: italic; font-weight: 400; }
+.showcase-copy p {
+  color: var(--ink-2);
+  font-size: 1.02rem;
+  line-height: 1.65;
+  margin-bottom: 1.5rem;
+}
+.showcase-copy .steps-pill {
+  list-style: none;
+  margin-top: 1.5rem;
+}
+.showcase-copy .steps-pill li {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  background: rgba(252, 248, 238, 0.7);
+  backdrop-filter: blur(8px);
+  font-size: 0.88rem;
+  color: var(--ink-2);
+  margin-bottom: 0.5rem;
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  transition: border-color 0.3s, transform 0.3s var(--ease);
+}
+.showcase-copy .steps-pill li:hover {
+  border-color: var(--oxblood);
+  transform: translateX(4px);
+}
+.showcase-copy .steps-pill li::before {
+  content: "→";
+  color: var(--oxblood);
+  font-weight: 600;
+}
+
+/* Phone stage */
+.phone-stage {
+  position: relative;
+  display: flex; justify-content: center; align-items: center;
+  perspective: 1600px;
+  min-height: 620px;
+}
+.phone-mockup {
+  position: relative;
+  width: 300px; height: 610px;
+  transform-style: preserve-3d;
+  transform: rotateX(2deg) rotateY(-14deg) rotateZ(0.5deg);
+  transition: transform 0.6s var(--ease);
+  animation: phoneFloat 8s ease-in-out infinite;
+  will-change: transform;
+}
+@keyframes phoneFloat {
+  0%, 100% { transform: rotateX(2deg) rotateY(-14deg) translateY(0); }
+  50% { transform: rotateX(3deg) rotateY(-13deg) translateY(-10px); }
+}
+
+.phone-frame {
+  position: relative;
+  width: 100%; height: 100%;
+  background: linear-gradient(165deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%);
+  border-radius: 46px;
+  padding: 12px;
+  box-shadow:
+    0 60px 80px -30px rgba(14, 11, 6, 0.55),
+    0 30px 40px -20px rgba(14, 11, 6, 0.35),
+    inset 0 0 0 1.5px rgba(255,255,255,0.06),
+    inset 0 1px 0 rgba(255,255,255,0.12);
+}
+.phone-frame::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 47px;
+  background: linear-gradient(145deg, rgba(255,255,255,0.25), transparent 50%);
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.4;
+}
+.phone-screen {
+  position: relative;
+  width: 100%; height: 100%;
+  border-radius: 34px;
+  overflow: hidden;
+  background: #ece5dd; /* WhatsApp bg */
+  background-image:
+    linear-gradient(180deg, #0B825A 0%, #0B825A 54px, #ECE5DD 54px);
+}
+.phone-notch {
+  position: absolute;
+  top: 8px; left: 50%; transform: translateX(-50%);
+  width: 110px; height: 30px;
+  background: #0a0a0a;
+  border-radius: 20px;
+  z-index: 10;
+}
+
+/* WhatsApp header */
+.wa-header {
+  position: relative; z-index: 2;
+  padding: 14px 14px 10px;
+  padding-top: 48px;
+  display: flex; align-items: center; gap: 0.7rem;
+  color: #fff;
+}
+.wa-avatar {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7C2F22, #B88432);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: #fff;
+  letter-spacing: -0.02em;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+}
+.wa-who { display: flex; flex-direction: column; gap: 1px; line-height: 1.15; }
+.wa-name { font-family: var(--sans); font-size: 0.88rem; font-weight: 600; letter-spacing: -0.005em; }
+.wa-status { font-size: 0.66rem; opacity: 0.88; font-weight: 400; }
+.wa-status .live-dot {
+  display: inline-block;
+  width: 6px; height: 6px;
+  background: #9ef9ee;
+  border-radius: 50%;
+  margin-right: 3px;
+  vertical-align: middle;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Message thread */
+.wa-thread {
+  padding: 0.85rem 0.85rem 1rem;
+  display: flex; flex-direction: column;
+  gap: 0.45rem;
+  height: calc(100% - 110px);
+  overflow: hidden;
+  background: #ECE5DD;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(14,11,6,0.03) 0%, transparent 30%),
+    radial-gradient(circle at 90% 80%, rgba(14,11,6,0.04) 0%, transparent 35%);
+}
+.wa-msg {
+  max-width: 80%;
+  padding: 0.48rem 0.65rem 0.4rem;
+  border-radius: 10px;
+  font-family: var(--body);
+  font-size: 0.72rem;
+  line-height: 1.4;
+  color: #111;
+  position: relative;
+  box-shadow: 0 1px 0.5px rgba(14, 11, 6, 0.1);
+  opacity: 0;
+  transform: translateY(8px) scale(0.96);
+  transition: opacity 0.45s var(--ease), transform 0.55s var(--ease);
+}
+.wa-msg.show { opacity: 1; transform: none; }
+.wa-msg .t { display: inline-block; font-size: 0.6rem; opacity: 0.55; margin-left: 0.35rem; margin-top: 2px; }
+.wa-msg .tick {
+  display: inline-block;
+  color: #53BDEB;
+  font-size: 0.62rem;
+  margin-left: 2px;
+  vertical-align: middle;
+  font-weight: 700;
+}
+.wa-out {
+  background: #DCF8C6;
+  align-self: flex-end;
+  border-bottom-right-radius: 3px;
+}
+.wa-out::after {
+  content: "";
+  position: absolute;
+  right: -5px; top: 0;
+  width: 0; height: 0;
+  border-left: 6px solid #DCF8C6;
+  border-top: 6px solid transparent;
+}
+.wa-in {
+  background: #FFFFFF;
+  align-self: flex-start;
+  border-bottom-left-radius: 3px;
+}
+.wa-in::after {
+  content: "";
+  position: absolute;
+  left: -5px; top: 0;
+  width: 0; height: 0;
+  border-right: 6px solid #FFFFFF;
+  border-top: 6px solid transparent;
+}
+
+/* Typing dots */
+.wa-typing {
+  display: inline-flex; gap: 3px;
+  padding: 0.5rem 0.75rem;
+  background: #FFFFFF;
+  border-radius: 10px;
+  border-bottom-left-radius: 3px;
+  align-self: flex-start;
+  box-shadow: 0 1px 0.5px rgba(14,11,6,0.08);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+}
+.wa-typing.show { opacity: 1; transform: none; }
+.wa-typing span {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(14,11,6,0.35);
+  animation: typingDot 1.2s ease-in-out infinite;
+}
+.wa-typing span:nth-child(2) { animation-delay: 0.15s; }
+.wa-typing span:nth-child(3) { animation-delay: 0.3s; }
+@keyframes typingDot {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.35; }
+  30% { transform: translateY(-4px); opacity: 1; }
+}
+
+/* Input bar at bottom of phone */
+.wa-input {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 0.55rem 0.65rem;
+  background: #F0F0F0;
+  display: flex; align-items: center; gap: 0.4rem;
+  border-top: 1px solid rgba(14,11,6,0.06);
+}
+.wa-input-bar {
+  flex: 1;
+  height: 28px;
+  background: #fff;
+  border-radius: 14px;
+  display: flex; align-items: center;
+  padding: 0 0.65rem;
+  font-size: 0.64rem;
+  color: rgba(14,11,6,0.45);
+}
+.wa-input-send {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: #25D366;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 0.7rem;
+  flex-shrink: 0;
+}
+
+/* Floating badge annotations beside the phone */
+.phone-badge {
+  position: absolute;
+  background: var(--paper);
+  border: 1px solid var(--line-2);
+  border-radius: 14px;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 18px 40px -18px rgba(14,11,6,0.25), 0 2px 8px rgba(14,11,6,0.05);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translate3d(0, 10px, 0);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+.phone-badge.show { opacity: 1; transform: translate3d(0, 0, 0); }
+.phone-badge-label {
+  font-family: var(--body);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+.phone-badge-value {
+  font-family: var(--sans);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+.phone-badge-value .accent { color: var(--oxblood); }
+.phone-badge-1 { top: 60px; right: -10px; transform: translate3d(0,10px,0) rotate(3deg); }
+.phone-badge-1.show { transform: rotate(3deg); }
+.phone-badge-2 { bottom: 100px; left: -20px; transform: translate3d(0,10px,0) rotate(-2deg); }
+.phone-badge-2.show { transform: rotate(-2deg); }
+.phone-badge-3 { top: 280px; right: -30px; transform: translate3d(0,10px,0) rotate(1.5deg); }
+.phone-badge-3.show { transform: rotate(1.5deg); }
+
+@media (max-width: 900px) {
+  .showcase-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .phone-stage { min-height: 560px; }
+  .phone-mockup { width: 270px; height: 550px; transform: rotateY(0); animation: none; }
+  .phone-badge { display: none; }
+}
+
+/* =================================================================
+   BENTO — What Nexura ships
+   ================================================================= */
+
+.bento-section {
+  background: var(--cream);
+  padding: clamp(5rem, 10vw, 9rem) var(--pad-x);
+}
+.bento-section .section-inner { max-width: var(--max); margin: 0 auto; }
+
+.bento {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: minmax(220px, auto);
+  gap: 1rem;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  perspective: 1500px;
+}
+.bento-card {
+  position: relative;
+  background: var(--paper);
+  border: 1px solid var(--line-2);
+  border-radius: 16px;
+  overflow: hidden;
+  padding: 1.75rem 1.75rem 1.5rem;
+  display: flex; flex-direction: column;
+  transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease), border-color 0.4s;
+  will-change: transform;
+  transform-style: preserve-3d;
+  cursor: default;
+}
+.bento-card:hover {
+  border-color: var(--line);
+  box-shadow: 0 28px 56px -28px rgba(14,11,6,0.28), 0 4px 12px rgba(14,11,6,0.06);
+  transform: perspective(1500px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateZ(10px);
+}
+.bento-card .bento-label {
+  font-family: var(--body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.75rem;
+}
+.bento-card .bento-title {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 1.35rem;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 0.55rem;
+  color: var(--ink);
+}
+.bento-card .bento-desc {
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  margin-bottom: 1.25rem;
+  max-width: 34ch;
+}
+.bento-visual {
+  margin-top: auto;
+  position: relative;
+  flex: 1;
+  min-height: 140px;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* Bento cell sizes */
+.bento-1 { grid-column: span 3; grid-row: span 2; }
+.bento-2 { grid-column: span 3; grid-row: span 1; }
+.bento-3 { grid-column: span 3; grid-row: span 1; }
+.bento-4 { grid-column: span 2; grid-row: span 1; }
+.bento-5 { grid-column: span 4; grid-row: span 1; }
+
+@media (max-width: 900px) {
+  .bento { grid-template-columns: repeat(2, 1fr); grid-auto-rows: minmax(200px, auto); }
+  .bento-1 { grid-column: span 2; grid-row: span 1; }
+  .bento-2, .bento-3, .bento-4, .bento-5 { grid-column: span 2; grid-row: span 1; }
+}
+@media (max-width: 540px) {
+  .bento { grid-template-columns: 1fr; }
+  .bento-1, .bento-2, .bento-3, .bento-4, .bento-5 { grid-column: span 1; }
+}
+
+/* Bento visuals — stylised mini UIs */
+
+/* Instagram grid preview */
+.viz-ig {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  width: 100%;
+  max-width: 340px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 14px 32px -18px rgba(14,11,6,0.28);
+}
+.viz-ig-tile {
+  aspect-ratio: 1;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.viz-ig-tile::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.15) 100%);
+}
+.viz-ig-tile.t1 { background-image: url('images/table-spread.png'); }
+.viz-ig-tile.t2 { background-image: url('images/cafe-handoff.png'); }
+.viz-ig-tile.t3 { background-image: url('images/latte-art.png'); }
+.viz-ig-tile.t4 { background-image: url('images/restaurant-alive.png'); }
+.viz-ig-tile.t5 { background-image: url('images/scallops.png'); background-color: #1a1a1a; }
+.viz-ig-tile.t6 { background-image: url('images/wagyu-plate.png'); background-color: #1a1a1a; }
+
+/* Google Business card */
+.viz-gbp {
+  background: #fff;
+  border: 1px solid var(--line-2);
+  border-radius: 12px;
+  padding: 0.9rem;
+  width: 100%;
+  max-width: 320px;
+  box-shadow: 0 14px 32px -18px rgba(14,11,6,0.24);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.82rem;
+  color: #202124;
+}
+.viz-gbp-title { font-weight: 500; font-size: 0.95rem; color: #1a0dab; letter-spacing: -0.01em; }
+.viz-gbp-stars { display: flex; align-items: center; gap: 0.3rem; margin-top: 0.25rem; color: #70757a; font-size: 0.74rem; }
+.viz-gbp-stars .s { color: #FBBC04; letter-spacing: 1px; }
+.viz-gbp-meta {
+  display: flex; gap: 0.6rem; margin-top: 0.4rem; align-items: center;
+  font-size: 0.72rem; color: #5f6368;
+}
+.viz-gbp-meta .dot { width: 3px; height: 3px; background: #5f6368; border-radius: 50%; }
+.viz-gbp-meta .open { color: #137333; font-weight: 500; }
+.viz-gbp-meta .open::before { content: "● "; color: #137333; }
+
+/* Email preview */
+.viz-email {
+  background: #fff;
+  border: 1px solid var(--line-2);
+  border-radius: 10px;
+  padding: 0.9rem;
+  width: 100%;
+  max-width: 320px;
+  box-shadow: 0 14px 32px -18px rgba(14,11,6,0.22);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.76rem;
+  color: #202124;
+}
+.viz-email-from {
+  display: flex; align-items: center; gap: 0.45rem;
+  margin-bottom: 0.4rem;
+}
+.viz-email-avatar {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--oxblood), var(--amber));
+  color: #fff; display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.62rem; letter-spacing: -0.02em;
+}
+.viz-email-name { font-weight: 500; font-size: 0.74rem; }
+.viz-email-time { margin-left: auto; font-size: 0.65rem; color: #5f6368; }
+.viz-email-subject { font-weight: 600; color: #202124; margin-bottom: 0.2rem; letter-spacing: -0.005em; }
+.viz-email-preview { color: #5f6368; font-size: 0.7rem; line-height: 1.45; }
+.viz-email-preview em { font-style: normal; color: var(--oxblood); font-weight: 500; }
+
+/* Review reply */
+.viz-review {
+  background: #fff;
+  border: 1px solid var(--line-2);
+  border-radius: 10px;
+  padding: 0.9rem;
+  width: 100%;
+  max-width: 300px;
+  box-shadow: 0 14px 32px -18px rgba(14,11,6,0.22);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.76rem;
+}
+.viz-review-head { display: flex; gap: 0.5rem; align-items: center; }
+.viz-review-avatar { width: 22px; height: 22px; border-radius: 50%; background: #D1A981; color: #fff; font-size: 0.65rem; display: flex; align-items: center; justify-content: center; font-weight: 600; }
+.viz-review-stars { color: #FBBC04; letter-spacing: 1px; font-size: 0.78rem; margin: 0.35rem 0; }
+.viz-review-body { color: #202124; font-size: 0.7rem; line-height: 1.45; }
+.viz-review-reply {
+  margin-top: 0.55rem; padding: 0.55rem 0.65rem;
+  background: rgba(124, 47, 34, 0.05);
+  border-left: 2px solid var(--oxblood);
+  border-radius: 0 6px 6px 0;
+  font-size: 0.68rem; color: var(--ink);
+  line-height: 1.5;
+}
+.viz-review-reply .label {
+  display: block;
+  font-size: 0.6rem;
+  font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--oxblood); margin-bottom: 0.2rem;
+}
+
+/* Monthly report visual (optional fifth cell) */
+.viz-report {
+  display: flex; align-items: center; gap: 1rem; justify-content: center;
+  width: 100%; max-width: 320px;
+}
+.viz-report-row {
+  display: flex; flex-direction: column; gap: 0.35rem;
+  font-family: var(--sans);
+  font-variant-numeric: tabular-nums;
+}
+.viz-report-stat {
+  display: flex; align-items: baseline; gap: 0.5rem;
+  padding: 0.4rem 0.7rem;
+  background: #fff;
+  border: 1px solid var(--line-2);
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(14,11,6,0.04);
+}
+.viz-report-stat .num { font-weight: 600; font-size: 1.15rem; letter-spacing: -0.02em; color: var(--ink); }
+.viz-report-stat .lbl { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.06em; }
+.viz-report-stat .delta { font-size: 0.68rem; font-weight: 600; color: #137333; margin-left: 0.2rem; }
+.viz-report-stat .delta.down { color: #c5221f; }
+
+/* =================================================================
+   MANIFESTO — big-type pull quote
+   ================================================================= */
+
+.manifesto {
+  background:
+    radial-gradient(ellipse at 50% 100%, rgba(124, 47, 34, 0.06) 0%, transparent 50%),
+    var(--paper);
+  padding: clamp(6rem, 12vw, 10rem) var(--pad-x);
+  border-top: 1px solid var(--line-2);
+  border-bottom: 1px solid var(--line-2);
+  text-align: center;
+}
+.manifesto-inner { max-width: 1100px; margin: 0 auto; }
+.manifesto blockquote {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: clamp(1.9rem, 4.5vw, 4rem);
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  color: var(--ink);
+  max-width: 24ch;
+  margin: 0 auto;
+  text-wrap: balance;
+  position: relative;
+}
+.manifesto blockquote em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--oxblood);
+}
+.manifesto blockquote::before {
+  content: "\201C";
+  position: absolute;
+  top: -0.8em; left: -0.3em;
+  font-family: var(--sans);
+  font-size: 5em;
+  color: var(--line);
+  line-height: 1;
+  font-weight: 400;
+  pointer-events: none;
+}
+.manifesto cite {
+  display: block;
+  margin-top: 2.25rem;
+  font-family: var(--body);
+  font-style: normal;
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+}
+.manifesto cite::before {
+  content: ""; display: inline-block;
+  width: 28px; height: 1px;
+  background: var(--muted); margin-right: 0.8rem;
+  vertical-align: middle;
+}
