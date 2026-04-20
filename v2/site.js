@@ -36,7 +36,7 @@ const io = new IntersectionObserver(entries => {
     }
   });
 }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
-document.querySelectorAll('.reveal, .scene, .hero').forEach(el => io.observe(el));
+document.querySelectorAll('.reveal, .hero').forEach(el => io.observe(el));
 
 // Ticker: pause on hover
 document.querySelectorAll('.ticker').forEach(m => {
@@ -46,22 +46,22 @@ document.querySelectorAll('.ticker').forEach(m => {
   m.addEventListener('mouseleave', () => track.style.animationPlayState = 'running');
 });
 
-// Subtle parallax on hero / product scene backgrounds
-const sceneImgs = document.querySelectorAll('.hero .scene-bg img, .product-scene .scene-bg img');
+// Subtle parallax on feature (dark) section backgrounds
+const bgImgs = document.querySelectorAll('.feature-bg img, .hero-image img');
 let ticking = false;
 window.addEventListener('scroll', () => {
   if (ticking) return;
   ticking = true;
   requestAnimationFrame(() => {
-    sceneImgs.forEach(img => {
-      const scene = img.closest('section');
+    bgImgs.forEach(img => {
+      const scene = img.closest('section, figure');
       if (!scene) return;
       const r = scene.getBoundingClientRect();
       const vh = window.innerHeight;
       if (r.bottom < 0 || r.top > vh) return;
       const progress = (vh - r.top) / (vh + r.height);
-      const shift = (progress - 0.5) * 60;
-      img.style.transform = `scale(1.06) translate3d(0, ${shift.toFixed(1)}px, 0)`;
+      const shift = (progress - 0.5) * 40;
+      img.style.transform = `scale(1.04) translate3d(0, ${shift.toFixed(1)}px, 0)`;
     });
     ticking = false;
   });
@@ -72,32 +72,19 @@ const countIO = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (!e.isIntersecting) return;
     const el = e.target;
-    const target = parseInt(el.dataset.count, 10);
-    const suffix = el.dataset.suffix || '';
+    const target = parseFloat(el.dataset.count);
     const prefix = el.dataset.prefix || '';
-    const hasLt = el.textContent.trim().startsWith('<');
-    const duration = 1400;
+    const duration = 1300;
     const start = performance.now();
-    const unit = el.querySelector('.unit');
-    const unitHTML = unit ? unit.outerHTML : '';
     const tick = (now) => {
       const p = Math.min((now - start) / duration, 1);
       const eased = 1 - Math.pow(1 - p, 3);
       const val = Math.round(target * eased);
-      el.innerHTML = (hasLt ? '< ' : '') + prefix + val + (suffix && !unit ? suffix : '') + unitHTML;
+      el.textContent = prefix + val;
       if (p < 1) requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);
     countIO.unobserve(el);
   });
 }, { threshold: 0.5 });
-document.querySelectorAll('.spec-num [data-count]').forEach(el => countIO.observe(el));
-
-// Magnetic hover — update CSS vars for radial gradient on buttons
-document.querySelectorAll('.btn-dark, .btn-ghost').forEach(btn => {
-  btn.addEventListener('mousemove', e => {
-    const r = btn.getBoundingClientRect();
-    btn.style.setProperty('--mx', `${((e.clientX - r.left) / r.width) * 100}%`);
-    btn.style.setProperty('--my', `${((e.clientY - r.top) / r.height) * 100}%`);
-  });
-});
+document.querySelectorAll('[data-count]').forEach(el => countIO.observe(el));
