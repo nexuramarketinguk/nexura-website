@@ -50,6 +50,35 @@ document.querySelectorAll('.ticker').forEach(m => {
   m.addEventListener('mouseleave', () => track.style.animationPlayState = 'running');
 });
 
+// -- Product hero: mouse parallax on phone + floating tiles ---------
+document.querySelectorAll('.hero-product').forEach(hero => {
+  const viz = hero.querySelector('.hero-product-viz');
+  if (!viz || prefersReduced) return;
+
+  const phone = viz.querySelector('.phone-mockup');
+  const tiles = viz.querySelectorAll('.hero-tile');
+
+  hero.addEventListener('mousemove', e => {
+    const r = hero.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top) / r.height - 0.5;
+    // Phone at medium depth
+    if (phone) {
+      phone.style.transform = `rotateX(${3 + y * -3}deg) rotateY(${-10 + x * 6}deg) translate3d(${x * -18}px, ${y * -12}px, 0)`;
+    }
+    // Tiles at varied depth
+    tiles.forEach((tile, i) => {
+      const depth = parseFloat(tile.dataset.depth || (0.6 + i * 0.25));
+      const rot = tile.dataset.rot || '0';
+      tile.style.transform = `translate3d(${x * -28 * depth}px, ${y * -20 * depth}px, 0) rotate(${rot}deg)`;
+    });
+  });
+  hero.addEventListener('mouseleave', () => {
+    if (phone) phone.style.transform = '';
+    tiles.forEach(t => { t.style.transform = ''; });
+  });
+});
+
 // -- Cinematic hero: mouse parallax on bg + cursor spotlight --------
 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 

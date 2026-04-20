@@ -76,36 +76,98 @@
   </div>
 </nav>
 
-<!-- ── CINEMATIC HERO ── -->
-<header class="hero-cinematic">
-  <div class="hero-cinematic-bg">
-    <img src="images/restaurant-alive.png" alt="A bustling London restaurant in full service, bright natural light, customers dining." loading="eager" />
-  </div>
-  <div class="hero-cinematic-overlay"></div>
-  <div class="hero-cinematic-spot"></div>
+<!-- ── HERO (product composition) ── -->
+<header class="hero-product">
+  <div class="hero-product-inner">
 
-  <div class="hero-cinematic-meta">
-    <span class="pill">Accepting new venues — London</span>
-    <span class="loc">Spring 2026 · London, UK</span>
-  </div>
-
-  <div class="hero-cinematic-inner">
-    <span class="eyebrow reveal">Nexura · AI marketing for hospitality</span>
-    <h1 class="reveal d1">
-      Marketing, <span class="accent">handled.</span><br/>
-      On the one app you already use.
-    </h1>
-    <p class="sub reveal d2">
-      Nexura runs your Instagram, Google listing, reviews, emails and local SEO —
-      for one monthly price. You message us on WhatsApp. The AI does the work.
-    </p>
-    <div class="hero-cinematic-actions reveal d3">
-      <a href="https://nexura-services-production.up.railway.app/apply" class="btn btn-primary" target="_blank" rel="noopener">Apply for a free pilot <span class="arr">→</span></a>
-      <a href="https://wa.me/447591771279?text=Hey%20Nexura%2C%20I%27m%20interested%20in%20finding%20out%20more" class="btn btn-ghost" target="_blank" rel="noopener">Chat on WhatsApp</a>
+    <div class="hero-product-copy">
+      <span class="pill reveal">Accepting new venues — London</span>
+      <h1 class="reveal d1">
+        Marketing, <span class="accent">handled.</span>
+      </h1>
+      <p class="sub reveal d2">
+        Nexura runs your Instagram, Google listing, reviews, emails and local SEO —
+        for one monthly price. You message us on WhatsApp. The AI does the work.
+      </p>
+      <div class="hero-product-actions reveal d3">
+        <a href="https://nexura-services-production.up.railway.app/apply" class="btn btn-primary" target="_blank" rel="noopener">Apply for a free pilot <span class="arr">→</span></a>
+        <a href="https://wa.me/447591771279?text=Hey%20Nexura%2C%20I%27m%20interested%20in%20finding%20out%20more" class="btn btn-ghost" target="_blank" rel="noopener">Chat on WhatsApp</a>
+      </div>
+      <div class="hero-product-trust reveal d4">
+        <span><strong>48 hours</strong> to first post live</span>
+        <span class="dot"></span>
+        <span><strong>No contracts</strong></span>
+        <span class="dot"></span>
+        <span><strong>Cancel any month</strong></span>
+      </div>
     </div>
-  </div>
 
-  <span class="hero-scroll">Scroll</span>
+    <div class="hero-product-viz">
+
+      <!-- Floating tile 1: review replied -->
+      <div class="hero-tile hero-tile-review" data-depth="1.0" data-rot="-4">
+        <div class="row">
+          <div class="avatar">M</div>
+          <div class="who">Maria · Google review</div>
+          <div class="when">2m ago</div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <div class="txt">"Best Sunday roast we've had in months. The Yorkshire was the size of a dinner plate."</div>
+        <div class="replied">Reply sent</div>
+      </div>
+
+      <!-- Main phone mockup with animated WhatsApp thread -->
+      <div class="phone-mockup">
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="phone-notch"></div>
+            <div class="wa-header">
+              <div class="wa-avatar"><img src="images/logo.png" alt="Nexura" /></div>
+              <div class="wa-who">
+                <div class="wa-name">Nexura</div>
+                <div class="wa-status"><span class="live-dot"></span>online · typing</div>
+              </div>
+            </div>
+            <div class="wa-thread">
+              <div class="wa-msg wa-out" data-delay="200">Can you sort the Instagram for bank holiday? Need 3 posts.<span class="t">09:14 <span class="tick">✓✓</span></span></div>
+              <div class="wa-typing" data-delay="1100"><span></span><span></span><span></span></div>
+              <div class="wa-msg wa-in" data-delay="2000">On it 👍 Drafting 3 — Friday teaser, Saturday menu reveal, Monday recap. 20 min.<span class="t">09:14</span></div>
+              <div class="wa-msg wa-out" data-delay="3400">Perfect. Also reply to that 1★ from yesterday?<span class="t">09:16 <span class="tick">✓✓</span></span></div>
+              <div class="wa-typing" data-delay="4200"><span></span><span></span><span></span></div>
+              <div class="wa-msg wa-in" data-delay="5000">Draft attached — professional, empathetic, invites them back. Post it? 🎯<span class="t">09:16</span></div>
+              <div class="wa-msg wa-out" data-delay="6400">Yes. And schedule the email to regulars for Thursday?<span class="t">09:17 <span class="tick">✓✓</span></span></div>
+            </div>
+            <div class="wa-input">
+              <div class="wa-input-bar">Message…</div>
+              <div class="wa-input-send">↑</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating tile 2: Instagram post -->
+      <div class="hero-tile hero-tile-ig" data-depth="0.8" data-rot="2.5">
+        <div class="top">
+          <div class="mini-ig"></div>
+          <div class="txt"><strong>New post</strong><br/>Scheduled · 5pm</div>
+        </div>
+        <div class="thumb"></div>
+      </div>
+
+      <!-- Floating tile 3: Google Business update -->
+      <div class="hero-tile hero-tile-gbp" data-depth="1.2" data-rot="3">
+        <div class="label">Google Business</div>
+        <div class="title">The Crown, Islington</div>
+        <div class="detail"><span class="open">Open</span> · Closes 11pm · Gastropub</div>
+        <div class="stat">
+          <span>This week's searches</span>
+          <span><span class="num">2,142</span> <span class="delta">+38%</span></span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
 </header>
 
 <!-- ── TICKER ── -->
@@ -153,66 +215,6 @@
     <div class="spec-desc">Every plan runs the full stack — no add-ons to buy.</div>
   </div>
 </div>
-
-<!-- ── SHOWCASE — animated phone + WhatsApp thread ── -->
-<section class="showcase">
-  <div class="showcase-inner">
-
-    <div class="showcase-copy reveal">
-      <span class="eyebrow">How it works</span>
-      <h2>Your entire marketing team — in one <span class="accent">WhatsApp thread.</span></h2>
-      <p>Send a photo, a voice note, a one-line request. The AI drafts, schedules, replies, ships. You approve what matters. Everything else just runs.</p>
-      <ul class="steps-pill">
-        <li>Message → drafts → approved → live</li>
-        <li>Typical reply: under one minute</li>
-        <li>No new app. No onboarding portal.</li>
-      </ul>
-    </div>
-
-    <div class="phone-stage">
-      <div class="phone-mockup">
-        <div class="phone-frame">
-          <div class="phone-screen">
-            <div class="phone-notch"></div>
-            <div class="wa-header">
-              <div class="wa-avatar">N</div>
-              <div class="wa-who">
-                <div class="wa-name">Nexura</div>
-                <div class="wa-status"><span class="live-dot"></span>online · typing</div>
-              </div>
-            </div>
-            <div class="wa-thread">
-              <div class="wa-msg wa-out" data-delay="200">Can you sort the Instagram for bank holiday? Need 3 posts.<span class="t">09:14 <span class="tick">✓✓</span></span></div>
-              <div class="wa-typing" data-delay="1100"><span></span><span></span><span></span></div>
-              <div class="wa-msg wa-in" data-delay="2000">On it 👍 Drafting 3 — Friday teaser, Saturday menu reveal, Monday recap. 20 min.<span class="t">09:14</span></div>
-              <div class="wa-msg wa-out" data-delay="3400">Perfect. Also reply to that 1★ from yesterday?<span class="t">09:16 <span class="tick">✓✓</span></span></div>
-              <div class="wa-typing" data-delay="4200"><span></span><span></span><span></span></div>
-              <div class="wa-msg wa-in" data-delay="5000">Draft attached — professional, empathetic, invites them back. Post it? 🎯<span class="t">09:16</span></div>
-              <div class="wa-msg wa-out" data-delay="6400">Yes. And the email to regulars — schedule for Thursday?<span class="t">09:17 <span class="tick">✓✓</span></span></div>
-            </div>
-            <div class="wa-input">
-              <div class="wa-input-bar">Message…</div>
-              <div class="wa-input-send">↑</div>
-            </div>
-          </div>
-        </div>
-        <div class="phone-badge phone-badge-1">
-          <div class="phone-badge-label">Reply time</div>
-          <div class="phone-badge-value">&lt; 1 <span class="accent">min</span></div>
-        </div>
-        <div class="phone-badge phone-badge-2">
-          <div class="phone-badge-label">Shipped today</div>
-          <div class="phone-badge-value">3 <span class="accent">posts</span></div>
-        </div>
-        <div class="phone-badge phone-badge-3">
-          <div class="phone-badge-label">Reviews handled</div>
-          <div class="phone-badge-value">12 / 12</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
 
 <!-- ── CAPABILITIES ── -->
 <section class="section">
