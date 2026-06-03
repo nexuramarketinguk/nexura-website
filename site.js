@@ -148,20 +148,9 @@ const onScrollParallax = () => {
 };
 window.addEventListener('scroll', onScrollParallax, { passive: true });
 
-// -- Magnetic buttons: cursor-tracked radial glow + micro-pull ------
-document.querySelectorAll('.btn').forEach(btn => {
-  btn.addEventListener('mousemove', e => {
-    const r = btn.getBoundingClientRect();
-    const mx = ((e.clientX - r.left) / r.width) * 100;
-    const my = ((e.clientY - r.top) / r.height) * 100;
-    btn.style.setProperty('--mx', `${mx}%`);
-    btn.style.setProperty('--my', `${my}%`);
-  });
-  btn.addEventListener('mouseleave', () => {
-    btn.style.setProperty('--mx', `50%`);
-    btn.style.setProperty('--my', `50%`);
-  });
-});
+// -- Magnetic button glow: removed for editorial restraint.
+//    Buttons keep the quiet translateY hover defined in CSS — no cursor-tracked
+//    radial glow, which read as "look at the interaction" rather than premium.
 
 // -- WhatsApp chat: sequential bubble reveal when section enters ---
 const chatIO = new IntersectionObserver(entries => {
@@ -186,22 +175,8 @@ const chatIO = new IntersectionObserver(entries => {
 }, { threshold: 0.35 });
 document.querySelectorAll('.wa-thread').forEach(el => chatIO.observe(el));
 
-// -- 3D tilt on bento cards ----------------------------------------
-document.querySelectorAll('.bento-card').forEach(card => {
-  if (prefersReduced) return;
-  const threshold = 6;
-  card.addEventListener('mousemove', e => {
-    const r = card.getBoundingClientRect();
-    const x = (e.clientX - r.left) / r.width - 0.5;
-    const y = (e.clientY - r.top) / r.height - 0.5;
-    card.style.setProperty('--rx', `${(y * -threshold).toFixed(2)}deg`);
-    card.style.setProperty('--ry', `${(x * threshold).toFixed(2)}deg`);
-  });
-  card.addEventListener('mouseleave', () => {
-    card.style.setProperty('--rx', '0deg');
-    card.style.setProperty('--ry', '0deg');
-  });
-});
+// -- Bento 3D tilt: removed for editorial restraint.
+//    Cards stay flat and calm; the content carries them, not a gimmick.
 
 // -- Count-up spec numbers ------------------------------------------
 const countIO = new IntersectionObserver(entries => {

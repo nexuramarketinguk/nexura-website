@@ -32,6 +32,7 @@
   --amber-soft:#E8D9B7;
 
   /* Type */
+  --serif: "Fraunces", Georgia, "Times New Roman", serif;   /* editorial display */
   --sans:  "Inter Tight", "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   --body:  "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
 
@@ -1058,6 +1059,17 @@ h3.display { font-size: clamp(1.6rem, 3vw, 2.75rem); line-height: 1.05; }
   grid-template-columns: repeat(2, 1fr);
   gap: clamp(2rem, 4vw, 4rem);
 }
+.founders-joint-bio {
+  max-width: 58ch;
+  margin: clamp(2.5rem, 5vw, 4rem) auto 0;
+  display: grid;
+  gap: 1.1rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--ink);
+  text-align: left;
+}
+.founders-joint-bio p { margin: 0; }
 .founder {
   display: grid;
   grid-template-rows: auto auto;
@@ -2606,3 +2618,38 @@ footer.foot {
   padding: 0 0.75rem 0.4rem;
   font-size: 0.72rem; font-weight: 600; color: #262626;
 }
+
+/* =================================================================
+   EDITORIAL DISPLAY — Fraunces serif on headlines only.
+   Component titles deliberately stay grotesk (var --sans) for contrast.
+   Appended last so it wins over the per-component font-family rules above.
+   ================================================================= */
+.display,
+.hero-product-copy h1,
+.hero-cinematic h1,
+.page-head h1 {
+  font-family: var(--serif);
+  font-optical-sizing: auto;
+}
+/* Serif reads cramped at grotesk tracking — relax it. Specificity matched so
+   the per-size .display rules don't win the cascade. */
+h1.display, h2.display, h3.display,
+.hero-product-copy h1, .hero-cinematic h1, .page-head h1 {
+  letter-spacing: -0.018em;
+}
+/* Italic accent word — the editorial signature. */
+.hero-product-copy h1 .accent,
+.hero-cinematic h1 .accent {
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Founder portraits: sources are only ~280px, so cap the frame to avoid
+   upscaling them into blur, and drop the hover-zoom that magnifies it.
+   Swap in ~1000px+ square images to safely display them larger. */
+.founder-photo {
+  max-width: 300px;
+  margin-inline: auto;
+  aspect-ratio: 1 / 1;
+}
+.founder:hover .founder-photo img { transform: none; }

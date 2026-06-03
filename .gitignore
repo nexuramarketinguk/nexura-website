@@ -1,0 +1,4 @@
+.nano-banana-config.json
+.DS_Store
+.claude/
+node_modules/
